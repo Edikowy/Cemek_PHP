@@ -9,7 +9,7 @@ class View
      */
     public function __construct()
     {
-        echo 'view';
+        echo 'viewffffffffff';
     }
 }
 
