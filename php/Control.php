@@ -6,7 +6,7 @@ class Control
 
     public function __construct()
     {
-        echo 'kontkont';
+        echo 'kontkontssssssssss';
     }
 }
 
