@@ -21,13 +21,9 @@ class Config {
 		'stopka' => 'Cemek',
 		'style' => array(
 				'css/zero.css',
-				'css/style.css',
-				'css/types.css',
-				'css/front.css',
-				'css/form.css'
+				'css/style.css'
 		),
 		'skrypty' => array(
-				'js/main.js',
 				'js/zegar.js'
 		),
 		'linki' => array(
@@ -58,30 +54,15 @@ class Config {
 				)
 		)
 	);
-	/**
-	 * @return multitype:string 
-	 */
 	public static function getDb() {
 		return Config::$db;
 	}
-
-	/**
-	 * @param multitype:string  $db
-	 */
 	public static function setDb($db) {
 		Config::$db = $db;
 	}
-
-	/**
-	 * @return multitype:string multitype:string  multitype:multitype:string   
-	 */
 	public static function getView() {
 		return Config::$view;
 	}
-
-	/**
-	 * @param multitype:string multitype:string  multitype:multitype:string    $view
-	 */
 	public static function setView($view) {
 		Config::$view = $view;
 	}
