@@ -124,14 +124,43 @@ class View {
 		return $stopka;
 	}
 	//-----------------------------------------
-	public function showFormAdmin() {
+	public function showFormAdminNewEmail() {
 		{
-			$form_admin = "";
-			$form_admin .= "<form name='form_admin' method='POST' action=''>";
-			$form_admin .= "</form>\n";
-			$form_admin .= "";
+		    $form_admin_newemail = "";
+		    $form_admin_newemail .= "<form name='form_admin_newemail' method='POST' action=''>";
+		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[email]' type='text' value='' placeholder='Aktualny email' required>\n";
+		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[new_email]' type='text' value='' placeholder='Nowy email' required>\n";
+		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[pass]' type='password' value='' placeholder='Hasło' required>\n";
+		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[submit]' type='submit' value='ZMIEŃ ADRES EMAIL' placeholder='' required>\n";
+		    $form_admin_newemail .= "</form>\n";
+		    $form_admin_newemail .= "";
 		}
-		return $form_admin;
+		return $form_admin_newemail;
+	}
+	public function showFormAdminNewPass() {
+	    {
+	        $form_admin_newpass = "";
+	        $form_admin_newpass .= "<form name='form_admin_newpass' method='POST' action=''>";
+	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[pass]' type='password' value='' placeholder='Aktualne hasło' required>\n";
+	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[new_pass]' type='password' value='' placeholder='Wpisz nowe hasło' required>\n";
+	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[new_pass2]' type='password' value='' placeholder='Powtórz nowe hasło' required>\n";
+	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[submit]' type='submit' value='ZMIEŃ HASŁO' placeholder='' required>\n";
+	        $form_admin_newpass .= "</form>\n";
+	        $form_admin_newpass .= "";
+	    }
+	    return $form_admin_newpass;
+	}
+	public function showFormAdminDel() {
+	    {
+	        $form_admin_del = "";
+	        $form_admin_del .= "<form name='form_admin_del' method='POST' action=''>";
+	        $form_admin_del .= "<input class='' id='' name='form_admin_del[pass]' type='password' value='' placeholder='Hasło' required>\n";
+	        $form_admin_del .= "<input class='' id='' name='form_admin_del[confirm]' type='checkbox' value='' placeholder='' required>\n";
+	        $form_admin_del .= "<input class='' id='' name='form_admin_del[submit]' type='submit' value='USUŃ KONTO' placeholder='' required>\n";
+	        $form_admin_del .= "</form>\n";
+	        $form_admin_del .= "";
+	    }
+	    return $form_admin_del;
 	}
 	public function showFormLogIn() {
 		{
@@ -146,10 +175,16 @@ class View {
 	}
 	public function showFormRegist() {
 		{
-			$form_regist = "";
-			$form_regist .= "<form name='form_regist' method='POST' action=''>";
-			$form_regist .= "</form>\n";
-			$form_regist .= "";
+		    $form_regist = "";
+		    $form_regist .= "<form name='form_regist' method='POST' action=''>";
+		    $form_regist .= "<input class='' id='' name='form_regist[login]' type='text' value='' placeholder='Wpisz login' required>";
+		    $form_regist .= "<input class='' id='' name='form_regist[email]' type='text' value='' placeholder='Wpisz adres e-mail' required>";
+		    $form_regist .= "<input class='' id='' name='form_regist[password]' type='password' value='' placeholder='Wpisz hasło' required>";
+		    $form_regist .= "<input class='' id='' name='form_regist[password2]' type='password' value='' placeholder='Powtórz hasło' required>";
+		    $form_regist .= "<input class='' id='' name='form_regist[regulamin]' type='checkbox' value='' placeholder='' required>";
+		    $form_regist .= "<input class='' id='' name='form_regist[submit]' type='submit' value='REJESTRACJA' placeholder='' required>";
+		    $form_regist .= "</form>\n";
+		    $form_regist .= "";
 		}
 		return $form_regist;
 	}
