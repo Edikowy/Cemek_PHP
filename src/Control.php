@@ -19,19 +19,31 @@ class Control {
                     break;
                 
                 case 'linki=2':
-                    echo 'link 2</br>';
+                    $view = new View();
+                    echo '</br>';
+                    echo $view -> showFormRegist();
+                    echo '</br>';
                     break;
                     
                 case 'linki=3':
-                    echo 'link 3</br>';
+                    $view = new View();
+                    echo '</br>';
+                    echo $view -> showFormAdminNewEmail();
+                    echo '</br>';
                     break;
                     
                 case 'linki=4':
-                    echo 'link 4</br>';
+                    $view = new View();
+                    echo '</br>';
+                    echo $view -> showFormAdminNewPass();
+                    echo '</br>';
                     break;
                     
                 case 'linki=5':
-                    echo 'link 5</br>';
+                    $view = new View();
+                    echo '</br>';
+                    echo $view -> showFormAdminDel();
+                    echo '</br>';
                     break;
                     
                 case 'linki=6':
