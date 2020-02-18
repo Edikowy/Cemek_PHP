@@ -15,10 +15,9 @@ class Engine {
     public function __construct() {}
     public function start() {
         //----------------------------??????????????????????????????
-//         if (session_status() = PHP_SESSION_ACTIVE) {
-//             $this->setSes_name(session_name());
-//             $this->setSes_id(session_id());
-//         }
+        if (!empty($_SESSION)) {
+            session_destroy();
+        }
         if (!isset($_COOKIE[$this->getSes_name()])) {
             session_name($this->getSes_name());
             session_start([
@@ -36,15 +35,11 @@ class Engine {
         //----------------------------??????????????????????????????
         $control = new Control();
 //         $model = new User();
-        $util = new Util();
+//         $util = new Util();
         $view = new View();
         //----------------------------
         echo $view -> showDach();
-        echo '</br>';
         $control -> sluchacz();
-        echo '</br>';
-        $util ->serverIdent();
-        echo '</br>';
         echo $view -> showStopka();
     }
     public function doHedera($url) {
