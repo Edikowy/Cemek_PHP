@@ -77,7 +77,7 @@ class View {
 		{
 			$center = "";
 			$center .= "<div class='center'>\n";
-			$center .= "<a href='?linki=1' class='logo'>";
+			$center .= "<a href='index.php?linki=1' class='logo'>";
 			$center .= Config::$view['logo'];
 			$center .= "</a>\n";
 			$center .= "</div>\n";
@@ -112,7 +112,7 @@ class View {
 			$stopka = "";
 			$stopka .= "</div>\n";
 			$stopka .= "<footer class='stopka'>\n";
-			$stopka .= "<a href='?dupa' class='stopka_logo'>";
+			$stopka .= "<a href='index.php?linki=1' class='stopka_logo'>";
 			$stopka .= Config::$view['stopka'];
 			$stopka .= "&copy;";
 			$stopka .= "</a>";
@@ -127,11 +127,11 @@ class View {
 	public function showFormAdminNewEmail() {
 		{
 		    $form_admin_newemail = "";
-		    $form_admin_newemail .= "<form name='form_admin_newemail' method='POST' action=''>";
-		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[email]' type='text' value='' placeholder='Aktualny email' required>\n";
-		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[new_email]' type='text' value='' placeholder='Nowy email' required>\n";
-		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[pass]' type='password' value='' placeholder='Hasło' required>\n";
-		    $form_admin_newemail .= "<input class='' id='' name='form_admin_newemail[submit]' type='submit' value='ZMIEŃ ADRES EMAIL' placeholder='' required>\n";
+		    $form_admin_newemail .= "<form name='form_admin_newemail' method='POST'>";
+		    $form_admin_newemail .= "<input name='form_admin_newemail[email]' type='text' placeholder='Aktualny email' required>\n";
+		    $form_admin_newemail .= "<input name='form_admin_newemail[new_email]' type='text' placeholder='Nowy email' required>\n";
+		    $form_admin_newemail .= "<input name='form_admin_newemail[pass]' type='password' placeholder='Hasło' required>\n";
+		    $form_admin_newemail .= "<input name='form_admin_newemail[submit]' type='submit' value='ZMIEŃ ADRES EMAIL' required>\n";
 		    $form_admin_newemail .= "</form>\n";
 		    $form_admin_newemail .= "";
 		}
@@ -140,11 +140,11 @@ class View {
 	public function showFormAdminNewPass() {
 	    {
 	        $form_admin_newpass = "";
-	        $form_admin_newpass .= "<form name='form_admin_newpass' method='POST' action=''>";
-	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[pass]' type='password' value='' placeholder='Aktualne hasło' required>\n";
-	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[new_pass]' type='password' value='' placeholder='Wpisz nowe hasło' required>\n";
-	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[new_pass2]' type='password' value='' placeholder='Powtórz nowe hasło' required>\n";
-	        $form_admin_newpass .= "<input class='' id='' name='form_admin_newpass[submit]' type='submit' value='ZMIEŃ HASŁO' placeholder='' required>\n";
+	        $form_admin_newpass .= "<form name='form_admin_newpass' method='POST'>";
+	        $form_admin_newpass .= "<input name='form_admin_newpass[pass]' type='password' placeholder='Aktualne hasło' required>\n";
+	        $form_admin_newpass .= "<input name='form_admin_newpass[new_pass]' type='password' placeholder='Wpisz nowe hasło' required>\n";
+	        $form_admin_newpass .= "<input name='form_admin_newpass[new_pass2]' type='password'placeholder='Powtórz nowe hasło' required>\n";
+	        $form_admin_newpass .= "<input name='form_admin_newpass[submit]' type='submit' value='ZMIEŃ HASŁO' required>\n";
 	        $form_admin_newpass .= "</form>\n";
 	        $form_admin_newpass .= "";
 	    }
@@ -153,10 +153,10 @@ class View {
 	public function showFormAdminDel() {
 	    {
 	        $form_admin_del = "";
-	        $form_admin_del .= "<form name='form_admin_del' method='POST' action=''>";
-	        $form_admin_del .= "<input class='' id='' name='form_admin_del[pass]' type='password' value='' placeholder='Hasło' required>\n";
-	        $form_admin_del .= "<input class='' id='' name='form_admin_del[confirm]' type='checkbox' value='' placeholder='' required>\n";
-	        $form_admin_del .= "<input class='' id='' name='form_admin_del[submit]' type='submit' value='USUŃ KONTO' placeholder='' required>\n";
+	        $form_admin_del .= "<form name='form_admin_del' method='POST'>";
+	        $form_admin_del .= "<input name='form_admin_del[pass]' type='password' placeholder='Hasło' required>\n";
+	        $form_admin_del .= "<input name='form_admin_del[confirm]' type='checkbox' required>\n";
+	        $form_admin_del .= "<input name='form_admin_del[submit]' type='submit' value='USUŃ KONTO' required>\n";
 	        $form_admin_del .= "</form>\n";
 	        $form_admin_del .= "";
 	    }
@@ -165,10 +165,10 @@ class View {
 	public function showFormLogIn() {
 		{
 			$form_login = "";
-			$form_login .= "<form name='form_login' method='POST' action=''>";
-			$form_login .= "<input name='form_login[login]' type='text' value='' placeholder='Login' required>\n";
-			$form_login .= "<input name='form_login[pass]' type='password' value='' placeholder='Pass' required>\n";
-			$form_login .= "<input name='form_login[submit]' type='submit' value='Login' placeholder='' required>\n";
+			$form_login .= "<form name='form_login' method='POST'>";
+			$form_login .= "<input name='form_login[login]' type='text' placeholder='Login' required>\n";
+			$form_login .= "<input name='form_login[pass]' type='password' placeholder='Pass' required>\n";
+			$form_login .= "<input name='form_login[submit]' type='submit' value='Login' required>\n";
 			$form_login .= "</form>\n";
 		}
 		return $form_login;
@@ -176,13 +176,13 @@ class View {
 	public function showFormRegist() {
 		{
 		    $form_regist = "";
-		    $form_regist .= "<form name='form_regist' method='POST' action=''>";
-		    $form_regist .= "<input class='' id='' name='form_regist[login]' type='text' value='' placeholder='Wpisz login' required>";
-		    $form_regist .= "<input class='' id='' name='form_regist[email]' type='text' value='' placeholder='Wpisz adres e-mail' required>";
-		    $form_regist .= "<input class='' id='' name='form_regist[password]' type='password' value='' placeholder='Wpisz hasło' required>";
-		    $form_regist .= "<input class='' id='' name='form_regist[password2]' type='password' value='' placeholder='Powtórz hasło' required>";
-		    $form_regist .= "<input class='' id='' name='form_regist[regulamin]' type='checkbox' value='' placeholder='' required>";
-		    $form_regist .= "<input class='' id='' name='form_regist[submit]' type='submit' value='REJESTRACJA' placeholder='' required>";
+		    $form_regist .= "<form name='form_regist' method='POST'>";
+		    $form_regist .= "<input name='form_regist[login]' type='text' placeholder='Wpisz login' required>";
+		    $form_regist .= "<input name='form_regist[email]' type='text' placeholder='Wpisz adres e-mail' required>";
+		    $form_regist .= "<input name='form_regist[password]' type='password' placeholder='Wpisz hasło' required>";
+		    $form_regist .= "<input name='form_regist[password2]' type='password' placeholder='Powtórz hasło' required>";
+		    $form_regist .= "<input name='form_regist[regulamin]' type='checkbox' required>";
+		    $form_regist .= "<input name='form_regist[submit]' type='submit' value='REJESTRACJA' required>";
 		    $form_regist .= "</form>\n";
 		    $form_regist .= "";
 		}
