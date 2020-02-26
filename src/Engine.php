@@ -14,7 +14,7 @@ class Engine {
     private $kuki_exp = 30*24*3600;
     public function __construct() {}
     public function start() {
-        //----------------------------??????????????????????????????
+        //----------------------------
         if (!empty($_SESSION)) {
             session_destroy();
         }
@@ -32,7 +32,7 @@ class Engine {
                 'cookie_lifetime' => $this->getKuki_exp(),
             ]);
         }
-        //----------------------------??????????????????????????????
+        //----------------------------
         $control = new Control();
 //         $model = new User();
 //         $util = new Util();
