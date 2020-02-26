@@ -22,7 +22,7 @@ class User extends Model {
         if ((!empty($_SESSION['user']['login'])) && (!empty($_SESSION['user']['pass']))) {
             $this->setLogin(addslashes($_SESSION['user']['login']));
             $this->setPass(addslashes($_SESSION['user']['pass']));
-            $sql = "SELECT * FROM users WHERE login = '$this->getLogin()'";
+            $sql = 'SELECT * FROM users WHERE login = $this->getLogin()';
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +44,7 @@ class User extends Model {
         $this->setLogin($_SESSION['user']['login']);
         $_SESSION['user']['pass'] = addslashes($pass);
         $this->setPass($_SESSION['user']['pass']);
-        $sql = "SELECT * FROM users WHERE login = '$this->getLogin()'";
+        $sql = 'SELECT * FROM users WHERE login = $this->getLogin()';
         $query = $this->conn->prepare($sql);
         $query->bindValue('login',$this->getLogin());
         $query->execute();
