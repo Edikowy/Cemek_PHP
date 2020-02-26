@@ -131,6 +131,7 @@ class View {
 		    $form_admin_newemail .= "<input name='form_admin_newemail[email]' type='text' placeholder='Aktualny email' required>\n";
 		    $form_admin_newemail .= "<input name='form_admin_newemail[new_email]' type='text' placeholder='Nowy email' required>\n";
 		    $form_admin_newemail .= "<input name='form_admin_newemail[pass]' type='password' placeholder='Hasło' required>\n";
+		    $form_admin_newemail .= "<input name='form_admin_newemail[confirm]' type='checkbox' required>\n";
 		    $form_admin_newemail .= "<input name='form_admin_newemail[submit]' type='submit' value='ZMIEŃ ADRES EMAIL' required>\n";
 		    $form_admin_newemail .= "</form>\n";
 		    $form_admin_newemail .= "";
@@ -144,6 +145,7 @@ class View {
 	        $form_admin_newpass .= "<input name='form_admin_newpass[pass]' type='password' placeholder='Aktualne hasło' required>\n";
 	        $form_admin_newpass .= "<input name='form_admin_newpass[new_pass]' type='password' placeholder='Wpisz nowe hasło' required>\n";
 	        $form_admin_newpass .= "<input name='form_admin_newpass[new_pass2]' type='password'placeholder='Powtórz nowe hasło' required>\n";
+	        $form_admin_newpass .= "<input name='form_admin_newpass[confirm]' type='checkbox' required>\n";
 	        $form_admin_newpass .= "<input name='form_admin_newpass[submit]' type='submit' value='ZMIEŃ HASŁO' required>\n";
 	        $form_admin_newpass .= "</form>\n";
 	        $form_admin_newpass .= "";
@@ -179,9 +181,9 @@ class View {
 		    $form_regist .= "<form name='form_regist' method='POST'>";
 		    $form_regist .= "<input name='form_regist[login]' type='text' placeholder='Wpisz login' required>";
 		    $form_regist .= "<input name='form_regist[email]' type='text' placeholder='Wpisz adres e-mail' required>";
-		    $form_regist .= "<input name='form_regist[password]' type='password' placeholder='Wpisz hasło' required>";
-		    $form_regist .= "<input name='form_regist[password2]' type='password' placeholder='Powtórz hasło' required>";
-		    $form_regist .= "<input name='form_regist[regulamin]' type='checkbox' required>";
+		    $form_regist .= "<input name='form_regist[pass]' type='password' placeholder='Wpisz hasło' required>";
+		    $form_regist .= "<input name='form_regist[pass2]' type='password' placeholder='Powtórz hasło' required>";
+		    $form_regist .= "<input name='form_regist[regulations]' type='checkbox' required>";
 		    $form_regist .= "<input name='form_regist[submit]' type='submit' value='REJESTRACJA' required>";
 		    $form_regist .= "</form>\n";
 		    $form_regist .= "";
