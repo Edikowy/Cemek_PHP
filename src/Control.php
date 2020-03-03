@@ -34,7 +34,6 @@ class Control {
                     
                 case 4:
                     echo 'link 4</br>Certo</br>';
-                    
                 break;
                     
                 case 5:
@@ -45,20 +44,28 @@ class Control {
                     echo 'link 6</br>Echo</br>';
                 break;
                 
+                case 7:
+                    echo 'link 7</br>Register</br>';
+                break;
+                
+                case 8:
+                    echo 'link 8</br>Admin</br>';
+                break;
+                
                 default:
                     echo 'default</br>';
                 break;
             }
             unset($_GET);
         }
-        if ($_POST) {
+        elseif ($_POST) {
             $model = new User();
             if (isset($_POST['form_login'])) {
-                echo 'form_login</br>form_login</br>';
+                @var_dump($_POST);
                 $model -> login($_POST['form_login']['login'], $_POST['form_login']['pass']);
             }
             if (isset($_POST['form_regist'])) {
-                echo 'form_regist</br>form_regist</br>';
+                @var_dump($_POST);
                 $model -> register($_POST['form_regist']['login']
                     , $_POST['form_regist']['email']
                     , $_POST['form_regist']['pass']
@@ -66,29 +73,27 @@ class Control {
                     , $_POST['form_regist']['regulations']);
             }
             if (isset($_POST['form_admin_newemail'])) {
-                echo 'form_admin_newemail</br>form_admin_newemail</br>';
-//                 $model -> chengeEmail($new_email, $pass, $confirm);
+                @var_dump($_POST);
                 $model -> chengeEmail($_POST['form_admin_newemail']['new_email']
                     , $_POST['form_admin_newemail']['pass']
                     , $_POST['form_admin_newemail']['confirm']);
-                //                 $model -> chengeEmail($_POST['form_admin_newemail']['email']
-                //                     , $_POST['form_admin_newemail']['new_email']
-                //                     , $_POST['form_admin_newemail']['pass']
-                //                     , $_POST['form_admin_newemail']['confirm']);
             }
             if (isset($_POST['form_admin_newpass'])) {
-                echo 'form_admin_newpass</br>form_admin_newpass</br>';
-//                 $model -> chengePass($old_pass, $new_pass, $new_pass2, $confirm);
+                @var_dump($_POST);
                 $model -> chengePass($_POST['form_admin_newpass']['pass']
                     , $_POST['form_admin_newpass']['new_pass']
                     , $_POST['form_admin_newpass']['new_pass2']
                     , $_POST['form_admin_newpass']['confirm']);
             }
             if (isset($_POST['form_admin_del'])) {
-                echo 'form_admin_del</br>form_admin_del</br>';
+                @var_dump($_POST);
                 $model -> delUser();
             }
             unset($_POST);
+        } else {
+            echo '</br>index</br>';
+            $util = new Util();
+            $util ->serverIdent2();
         }
     }
 }

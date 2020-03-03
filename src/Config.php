@@ -30,27 +30,27 @@ class Config {
 				array (
 						'Alfa',
 						'alfa',
-						'index.php?linki=2'
+						'index.php?linki=1'
 				),
 				array (
 						'Bravo',
 						'bravo',
-						'index.php?linki=3'
+						'index.php?linki=2'
 				),
 				array (
 						'Certo',
 						'certo',
-						'index.php?linki=4'
+						'index.php?linki=3'
 				),
 				array (
 						'Delta',
 						'delta',
-						'index.php?linki=5'
+						'index.php?linki=4'
 				),
 				array (
 						'Echo',
 						'echo',
-						'index.php?linki=6'
+						'index.php?linki=5'
 				)
 		)
 	);

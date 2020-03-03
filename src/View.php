@@ -77,7 +77,7 @@ class View {
 		{
 			$center = "";
 			$center .= "<div class='center'>\n";
-			$center .= "<a href='index.php?linki=1' class='logo'>";
+			$center .= "<a href='index.php' class='logo'>";
 			$center .= Config::$view['logo'];
 			$center .= "</a>\n";
 			$center .= "</div>\n";
@@ -112,7 +112,7 @@ class View {
 			$stopka = "";
 			$stopka .= "</div>\n";
 			$stopka .= "<footer class='stopka'>\n";
-			$stopka .= "<a href='index.php?linki=1' class='stopka_logo'>";
+			$stopka .= "<a href='index.php' class='stopka_logo'>";
 			$stopka .= Config::$view['stopka'];
 			$stopka .= "&copy;";
 			$stopka .= "</a>";
