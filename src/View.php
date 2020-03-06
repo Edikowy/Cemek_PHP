@@ -179,10 +179,10 @@ class View {
 		{
 		    $form_regist = "";
 		    $form_regist .= "<form name='form_regist' method='POST'>";
-		    $form_regist .= "<input name='form_regist[login]' type='text' placeholder='Wpisz login' required>";
-		    $form_regist .= "<input name='form_regist[email]' type='text' placeholder='Wpisz adres e-mail' required>";
-		    $form_regist .= "<input name='form_regist[pass]' type='password' placeholder='Wpisz hasło' required>";
-		    $form_regist .= "<input name='form_regist[pass2]' type='password' placeholder='Powtórz hasło' required>";
+		    $form_regist .= "<input name='form_regist[new_login]' type='text' placeholder='Wpisz login' required>";
+		    $form_regist .= "<input name='form_regist[new_email]' type='text' placeholder='Wpisz adres e-mail' required>";
+		    $form_regist .= "<input name='form_regist[new_pass]' type='password' placeholder='Wpisz hasło' required>";
+		    $form_regist .= "<input name='form_regist[new_pass2]' type='password' placeholder='Powtórz hasło' required>";
 		    $form_regist .= "<input name='form_regist[regulations]' type='checkbox' required>";
 		    $form_regist .= "<input name='form_regist[submit]' type='submit' value='REJESTRACJA' required>";
 		    $form_regist .= "</form>\n";

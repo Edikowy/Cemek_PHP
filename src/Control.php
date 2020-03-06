@@ -16,40 +16,36 @@ class Control {
             $linki = (int)$_GET['linki'];
             switch ($linki) {
                 case 1:
-                    echo 'link 1</br>index</br>';
+                    echo 'link 1</br>Alfa</br>';
                     $util ->serverIdent2();
                 break;
                 
                 case 2:
-                    echo 'link 2</br>Alfa</br>';
+                    echo 'link 2</br>Bravo</br>';
                     echo $view -> showFormRegist();
                 break;
                 
                 case 3:
-                    echo 'link 3</br>Bravo</br>';
+                    echo 'link 3</br>Certo</br>';
                     echo $view -> showFormAdminNewEmail();
                     echo $view -> showFormAdminNewPass();
                     echo $view -> showFormAdminDel();
                 break;
                     
                 case 4:
-                    echo 'link 4</br>Certo</br>';
+                    echo 'link 4</br>Delta</br>';
                 break;
                     
                 case 5:
-                    echo 'link 5</br>Delta</br>';
+                    echo 'link 5</br>Echo</br>';
                 break;
                     
                 case 6:
-                    echo 'link 6</br>Echo</br>';
+                    echo 'link 6</br>Register</br>';
                 break;
                 
                 case 7:
-                    echo 'link 7</br>Register</br>';
-                break;
-                
-                case 8:
-                    echo 'link 8</br>Admin</br>';
+                    echo 'link 7</br>Admin</br>';
                 break;
                 
                 default:
@@ -58,39 +54,32 @@ class Control {
             }
             unset($_GET);
         }
-        elseif ($_POST) {
-            $model = new User();
+        if ($_POST) {
+            $model = new Usera();
             if (isset($_POST['form_login'])) {
-                @var_dump($_POST);
                 $model -> login($_POST['form_login']['login'], $_POST['form_login']['pass']);
             }
             if (isset($_POST['form_regist'])) {
-                @var_dump($_POST);
-                $model -> register($_POST['form_regist']['login']
-                    , $_POST['form_regist']['email']
-                    , $_POST['form_regist']['pass']
-                    , $_POST['form_regist']['pass2']
-                    , $_POST['form_regist']['regulations']);
+                $model -> register($_POST['form_regist']['new_login']
+                    , $_POST['form_regist']['new_email']
+                    , $_POST['form_regist']['new_pass']
+                    , $_POST['form_regist']['new_pass2']);
             }
             if (isset($_POST['form_admin_newemail'])) {
-                @var_dump($_POST);
-                $model -> chengeEmail($_POST['form_admin_newemail']['new_email']
-                    , $_POST['form_admin_newemail']['pass']
-                    , $_POST['form_admin_newemail']['confirm']);
+                $model -> newEmail($_POST['form_admin_newemail']['new_email']
+                    , $_POST['form_admin_newemail']['pass']);
             }
             if (isset($_POST['form_admin_newpass'])) {
-                @var_dump($_POST);
-                $model -> chengePass($_POST['form_admin_newpass']['pass']
+                $model -> newPass($_POST['form_admin_newpass']['pass']
                     , $_POST['form_admin_newpass']['new_pass']
-                    , $_POST['form_admin_newpass']['new_pass2']
-                    , $_POST['form_admin_newpass']['confirm']);
+                    , $_POST['form_admin_newpass']['new_pass2']);
             }
             if (isset($_POST['form_admin_del'])) {
-                @var_dump($_POST);
                 $model -> delUser();
             }
             unset($_POST);
-        } else {
+        } 
+        if (!isset($_GET)) {
             echo '</br>index</br>';
             $util = new Util();
             $util ->serverIdent2();

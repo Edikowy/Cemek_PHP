@@ -17,8 +17,8 @@ class Config {
 			'db_port'      => '3306'
 	);
 	static $view = array(
-		'logo' => 'Cemek',
-		'stopka' => 'Cemek',
+		'logo' => 'Cemek_PHP',
+		'stopka' => 'Cemek_PHP',
 		'style' => array(
 				'css/zero.css',
 				'css/style.css'
