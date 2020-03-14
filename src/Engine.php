@@ -42,7 +42,7 @@ class Engine {
         $control -> sluchacz();
         echo $view -> showStopka();
     }
-    public function doHedera($url) {
+    public static function doHedera($url) {
         header("location: " . $url);
     }
 
