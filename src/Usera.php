@@ -30,8 +30,9 @@ class Usera extends Model {
         if ((!empty($_SESSION['user']['login'])) && (!empty($_SESSION['user']['pass']))) {
             $login_c = addslashes($_SESSION['user']['login']);
             $pass_c = addslashes($_SESSION['user']['pass']);
+            echo $login_c;
             // --------------------------------------------------------------------------------
-            $sql = 'SELECT * FROM users WHERE login = $login_c';
+            $sql = "SELECT * FROM users WHERE login = '$login_c'";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -42,6 +43,7 @@ class Usera extends Model {
                 $this->set("pass", $pass_c);
                 $this->set("email", $result["email"]);
                 $_SESSION['user']['email'] = $this->get("email");
+                echo $this->get("email");
                 $this->set("access", $result["access"]);
                 $_SESSION['user']['access'] = $this->get("access");
                 $this->set("register_date", $result["register_date"]);
@@ -63,14 +65,17 @@ class Usera extends Model {
     public function login($login, $pass) {
         $login_l = addslashes($login);
         $pass_l = addslashes($pass);
+        echo $login_l;
+        echo $pass_l;
         // --------------------------------------------------------------------------------
-        $sql = 'SELECT * FROM users WHERE login = $login_l';
+        $sql = "SELECT * FROM users WHERE login = '$login_l'";
         $query = $this->conn->prepare($sql);
-        $query->bindValue("login",$login_l);
+//         $query->bindValue("login",$login_l);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if (!empty($result)) {
             if (password_verify($pass_l,$result["pass"])) {
+                echo 'loguje';
                 $this->set("id",$result["id"]);
                 $_SESSION['user']['id'] = $this->get("id");
                 $this->set("login", $result["login"]);
@@ -95,6 +100,7 @@ class Usera extends Model {
                 $this->set("loged",TRUE);
                 $_SESSION['user']['loged'] = TRUE;
                 $this->conn = null;
+                echo 'zalogowany';
                 return TRUE;
             } else {
                 $_SESSION['err_user']['pass'] = 'Złe haslo';
@@ -120,42 +126,30 @@ class Usera extends Model {
         $email = addslashes($new_email);
         $pass = addslashes($new_pass);
         $pass2 = addslashes($new_pass2);
-        echo $login;
-        echo $email;
-        echo $pass;
-        $remote = $_SERVER['REMOTE_ADDR'];
-        echo $remote;
-        $agent = $_SERVER['HTTP_USER_AGENT'];
-        echo $agent;
         $all_OK = TRUE;
         // --------------------------------------------------------------------------------
         if ((strlen($login) < 3) || (strlen($login) > 20)) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_login'] = "Nick musi posiadać od 3 do 20 znaków!";
-            echo "Nick musi posiadać od 3 do 20 znaków!";
         }
         if (!ctype_alnum($login)) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_login'] = "Nick musi składać się z znaków alfanumerycznych";
-            echo "Nick musi składać się z znaków alfanumerycznych";
         }
         // --------------------------------------------------------------------------------
         $emailB = filter_var($email,FILTER_SANITIZE_EMAIL);
         if ((!filter_var($emailB,FILTER_VALIDATE_EMAIL)) || ($emailB != $email)) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_email'] = "Podaj poprawny adres e-mail!";
-            echo "Podaj poprawny adres e-mail!";
         }
         // --------------------------------------------------------------------------------
         if ((strlen($pass) < 6) || (strlen($pass2) > 20)) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_pass'] = "Hasło musi składać się od 6 do 20 znaków.";
-            echo "Hasło musi składać się od 6 do 20 znaków.";
         }
         if ($pass != $pass2) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_pass2'] = "Hasła nie są identyczne.";
-            echo "Hasła nie są identyczne.";
         }
         $pass_hash = password_hash($pass,PASSWORD_DEFAULT);
         // --------------------------------------------------------------------------------
@@ -183,14 +177,12 @@ class Usera extends Model {
         // ???????????????/
         if ($all_OK) {
             $remote = $_SERVER['REMOTE_ADDR'];
-            echo $remote;
             $agent = $_SERVER['HTTP_USER_AGENT'];
-            echo $agent;
-            $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email', '1', 'ggg', 'TRUE', '$remote', '$agent')";
+            $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email', '1', NULL, TRUE, '$remote', '$agent')";
             $query = $this->conn->prepare($sql);
             $query->execute();
             $_SESSION['user']['register_ok'] = TRUE; // ???????????????/
-            header("Location: {$_SERVER['PHP_SELF']}"); // ???????????????/
+            Engine::doHedera("index.php");
         }
         // ???????????????/
         // ???????????????/

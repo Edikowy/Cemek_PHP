@@ -19,6 +19,3 @@ function autoload($class) {
 
 $index = new Engine();
 $index -> start();
-
-
-

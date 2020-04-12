@@ -22,7 +22,6 @@ class Control {
                 
                 case 2:
                     echo 'link 2</br>Bravo</br>';
-                    echo $view -> showFormRegist();
                 break;
                 
                 case 3:
@@ -42,6 +41,7 @@ class Control {
                     
                 case 6:
                     echo 'link 6</br>Register</br>';
+                    echo $view -> showFormRegist();
                 break;
                 
                 case 7:
@@ -79,11 +79,11 @@ class Control {
             }
             unset($_POST);
         } 
-        if (!isset($_GET)) {
-            echo '</br>index</br>';
-            $util = new Util();
-            $util ->serverIdent2();
-        }
+//         if (!isset($_GET)) {
+//             echo '</br>index</br>';
+//             $util = new Util();
+//             $util ->serverIdent2();
+//         }
     }
 }
 
