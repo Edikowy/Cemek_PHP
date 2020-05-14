@@ -132,7 +132,7 @@ class View {
 		    $form_admin_newemail .= "<input name='form_admin_newemail[new_email]' type='text' placeholder='Nowy email' required>\n";
 		    $form_admin_newemail .= "<input name='form_admin_newemail[pass]' type='password' placeholder='Hasło' required>\n";
 		    $form_admin_newemail .= "<input name='form_admin_newemail[confirm]' type='checkbox' required>\n";
-		    $form_admin_newemail .= "<input name='form_admin_newemail[submit]' type='submit' value='ZMIEŃ ADRES EMAIL' required>\n";
+		    $form_admin_newemail .= "<input name='form_admin_newemail[submit]' type='submit' required>\n";
 		    $form_admin_newemail .= "</form>\n";
 		    $form_admin_newemail .= "";
 		}
@@ -146,7 +146,7 @@ class View {
 	        $form_admin_newpass .= "<input name='form_admin_newpass[new_pass]' type='password' placeholder='Wpisz nowe hasło' required>\n";
 	        $form_admin_newpass .= "<input name='form_admin_newpass[new_pass2]' type='password'placeholder='Powtórz nowe hasło' required>\n";
 	        $form_admin_newpass .= "<input name='form_admin_newpass[confirm]' type='checkbox' required>\n";
-	        $form_admin_newpass .= "<input name='form_admin_newpass[submit]' type='submit' value='ZMIEŃ HASŁO' required>\n";
+	        $form_admin_newpass .= "<input name='form_admin_newpass[submit]' type='submit' required>\n";
 	        $form_admin_newpass .= "</form>\n";
 	        $form_admin_newpass .= "";
 	    }
@@ -158,7 +158,7 @@ class View {
 	        $form_admin_del .= "<form name='form_admin_del' method='POST'>";
 	        $form_admin_del .= "<input name='form_admin_del[pass]' type='password' placeholder='Hasło' required>\n";
 	        $form_admin_del .= "<input name='form_admin_del[confirm]' type='checkbox' required>\n";
-	        $form_admin_del .= "<input name='form_admin_del[submit]' type='submit' value='USUŃ KONTO' required>\n";
+	        $form_admin_del .= "<input name='form_admin_del[submit]' type='submit' required>\n";
 	        $form_admin_del .= "</form>\n";
 	        $form_admin_del .= "";
 	    }
@@ -170,7 +170,7 @@ class View {
 			$form_login .= "<form name='form_login' method='POST'>";
 			$form_login .= "<input name='form_login[login]' type='text' placeholder='Login' required>\n";
 			$form_login .= "<input name='form_login[pass]' type='password' placeholder='Pass' required>\n";
-			$form_login .= "<input name='form_login[submit]' type='submit' value='Login' required>\n";
+			$form_login .= "<input name='form_login[submit]' type='submit' required>\n";
 			$form_login .= "</form>\n";
 		}
 		return $form_login;
@@ -184,7 +184,7 @@ class View {
 		    $form_regist .= "<input name='form_regist[new_pass]' type='password' placeholder='Wpisz hasło' required>";
 		    $form_regist .= "<input name='form_regist[new_pass2]' type='password' placeholder='Powtórz hasło' required>";
 		    $form_regist .= "<input name='form_regist[regulations]' type='checkbox' required>";
-		    $form_regist .= "<input name='form_regist[submit]' type='submit' value='REJESTRACJA' required>";
+		    $form_regist .= "<input name='form_regist[submit]' type='submit' required>";
 		    $form_regist .= "</form>\n";
 		    $form_regist .= "";
 		}

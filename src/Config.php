@@ -56,7 +56,12 @@ class Config {
 		                'Register',
 		                'echo',
 		                'index.php?linki=6'
-		    )
+		        ),
+		        array (
+		                'Admin',
+		                'echo',
+		                'index.php?linki=7'
+		        )
 		)
 	);
 	public static function getDb() {

@@ -26,9 +26,6 @@ class Control {
                 
                 case 3:
                     echo 'link 3</br>Certo</br>';
-                    echo $view -> showFormAdminNewEmail();
-                    echo $view -> showFormAdminNewPass();
-                    echo $view -> showFormAdminDel();
                 break;
                     
                 case 4:
@@ -46,6 +43,9 @@ class Control {
                 
                 case 7:
                     echo 'link 7</br>Admin</br>';
+                    echo $view -> showFormAdminNewEmail();
+                    echo $view -> showFormAdminNewPass();
+                    echo $view -> showFormAdminDel();
                 break;
                 
                 default:
@@ -55,7 +55,7 @@ class Control {
             unset($_GET);
         }
         if ($_POST) {
-            $model = new Usera();
+            $model = new User();
             if (isset($_POST['form_login'])) {
                 $model -> login($_POST['form_login']['login'], $_POST['form_login']['pass']);
             }
@@ -79,11 +79,6 @@ class Control {
             }
             unset($_POST);
         } 
-//         if (!isset($_GET)) {
-//             echo '</br>index</br>';
-//             $util = new Util();
-//             $util ->serverIdent2();
-//         }
     }
 }
 
