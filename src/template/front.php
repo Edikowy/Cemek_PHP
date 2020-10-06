@@ -1,4 +1,4 @@
-<div class='front'>
+<div id="front">
 
 </div>
-<?php
+

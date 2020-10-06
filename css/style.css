@@ -1,127 +1,75 @@
 @charset "UTF-8";
-
-html, body {
-	background-color: #282828;
-	color: #f9faec;
-	font-family: 'Source Sans Pro', sans-serif;
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
-a:link{
-	color: #f9faec;
-	text-shadow: 1px 2px 2px #282828;
-}
-a:visited{
-	color: #f0f0e6;
-	text-shadow: 3px -2px 2px;
-}
-big {
-	color: #f9faec;
-	padding: 20px;
-	font-size: 22px;
-	font-family: 'Source Serif Pro', sans-serif;
-	font-weight: 200;
-	text-shadow: 1px 4px 5px #282828;
-}
-code {
-	color: #f9fdec;
-	padding: 20px;
-	margin: 20px;
-	font-size: 18px;
-	font-family: 'Source Code Pro', sans-serif;
-	font-weight: 200;
-	text-shadow: 1px 2px 2px #282828;
-}
-p {
-	color: #f9fdec;
-	padding: 20px;
-	font-size: 18px;
-	font-family: 'Source Serif Pro', sans-serif;
-	font-weight: 600;
-	text-shadow: 1px 2px #282828;
-}
-.zero {
-	min-height: 800px;
+#zero {
 	width: 1220px;
+	height: 100%;
 	margin: 0px auto;
-	background-color:#888888;
-	box-shadow: 0px 0px 7px 3px #282828;
 }
-.dach {
+#dach {
 	top: 0;
 	width: 1220px;
 	height: 130px;
 	position: fixed;
-	overflow: hidden;
-	background-color: #888888;
-	text-align: center;
-	box-shadow: 2px 1px 16px 0px rgba(0, 0, 0, 0.75) !important;
-	/* float: left; */
 }
-.lewy {
-	height: 90px;
+#lewy {
 	width: 400px;
-	float: left;
-	/* box-shadow: 0px 0px 9px 3px; */
-}
-#data , #czas {
-	font-size: 21px;
-	font-family: 'Source Code Pro', sans-serif;
-	text-shadow: 1px 2px 2px #282828;
-}
-.center {
 	height: 90px;
+	float: left;
+}
+#center {
 	width: 420px;
-	float: left;
-	/* box-shadow: 0px 0px 9px 3px; */
-}
-.logo {
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 48px;
-	font-weight: 200;
-	text-shadow: 1px 2px 2px;
-}
-.logo:hover {
-	text-shadow: -6px 4px 5px #282828, 2px -1px 7px #ff0000 ;
-}
-.prawy {
 	height: 90px;
-	width: 400px;
 	float: left;
-	/* box-shadow: 0px 0px 9px 3px; */
 }
-.linki {
-	font-size: 28px;
-	font-family: 'Source Serif Pro', sans-serif;
-	font-weight: 700;
+#prawy {
+	width: 400px;
+	height: 90px;
+	float: left;
 }
-
-.linki li {
-	display: inline;
+#linki {
+	height: 40px;
+	margin-top: 90px;
+}
+#linki li {
 	margin: 0 10px;
+	display: inline;
+}
+#stopka {
+	bottom: 0;
+	width: 1220px;
+	height: 50px;
+	position: fixed;
+}
+#front {
+	top: 130px;
+	bottom: auto;
+	width: 1220px;
+	min-height: 100%;
+	z-index: -100;
+	position: absolute;
+}
+.belka_g {
+	height: 44px;
+	width: 1220px;
+	margin: 0;
+}
+.karta {
+	min-height: auto;
+	width: 1220px;
 }
 
-.front {
-	min-height: 640px;
-	padding: 10px;
-	margin-top: 120px;
-	margin-left: 2px;
-	margin-right: 2px;
-	margin-bottom: 30px;
-	box-shadow: inset 0px 0px 9px 3px #282828;
-}
-.stopka {
-	bottom: 0;
-	height: 30px;
+.belka_d {
+	height: 31px;
 	width: 1220px;
-	position: fixed;
-	overflow: hidden;
-	background-color: #888888;
-	font-size: 24px;
-	font-family: 'Source Serif Pro', sans-serif;
-	font-weight: 300;
-	text-align: center;
-	text-shadow: 1px 2px 2px;
-	box-shadow: 2px 1px 16px 0px rgba(0, 0, 0, 0.75) !important;
+	margin: 0;
 }
-.stopka_logo:hover {
-	text-shadow: -6px 4px 5px #282828, 2px 1px 3px #ff0000;
+.belka_end {
+	height: 31px;
+	width: 1220px;
+	margin: 0;
+	margin-bottom: 50px;
 }

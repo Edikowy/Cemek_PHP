@@ -20,8 +20,9 @@ class Config {
 		'logo' => 'Cemek_PHP',
 		'stopka' => 'Cemek_PHP',
 		'style' => array(
-				'css/zero.css',
-				'css/style.css'
+				'css/style.css',
+				'css/front.css',
+		        'css/types.css'
 		),
 		'skrypty' => array(
 				'js/zegar.js'
@@ -54,12 +55,12 @@ class Config {
 				),
 		        array (
 		                'Register',
-		                'echo',
+		                'register',
 		                'index.php?linki=6'
 		        ),
 		        array (
 		                'Admin',
-		                'echo',
+		                'admin',
 		                'index.php?linki=7'
 		        )
 		)

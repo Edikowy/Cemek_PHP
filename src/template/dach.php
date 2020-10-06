@@ -1,30 +1,39 @@
+<?php
+use src\Config;
+use src\Util;
+?>
 <!DOCTYPE html>
-<html lang='pl' dir='ltr'>
+<html lang="pl" dir="ltr">
 <head>
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'>
-<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<?php foreach(Config::$view['style'] as $styl): ?>
+<link href="<?= $styl ?>" rel="stylesheet">
+<?php endforeach;?>
+<?php foreach(Config::$view['skrypty'] as $skrypt): ?>
+<script src="<?= $skrypt ?>"></script>
+<?php endforeach;?>
+<title><?= Util::self() ?></title>
 </head>
 <body>
-<div class='zero'>
-<header class='dach'>
-
-<div class='lewy'>
-<div id='data'></div><div id='czas'></div>
+<div id="zero">
+<header id="dach">
+<div id="lewy">
+<div id="data"></div>
+<div id="czas"></div>
 </div>
-
-<div class='center'>
-<a href='index.php' class='logo'>Cemek_PHP</a>
+<div id="center">
+<a href="index.php" id="logo"><?= Config::$view['logo'] ?></a>
 </div>
-
-<div class='prawy'>
-
-</div>
-<nav class='linki'>
-
+<div id="prawy"></div>
+<nav id="linki">
+<ul>
+<?php foreach(Config::$view['linki'] as $n => list($nazwa, $id, $url)): ?>
+<li><a href="<?= $url ?>" id="<?= $id ?>"><?= $nazwa ?></a></li>
+<?php endforeach;?>
+</ul>
 </nav>
 </header>
-<?php
+<div id="front">

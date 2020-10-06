@@ -1,8 +1,9 @@
-<footer class='stopka'>
-<a href='index.php' class='stopka_logo'>Cemek_PHP&copy;</a>
+<?php use src\Config; ?>
+</div>
+<footer id="stopka">
+<a href="index.php" id="stopka_logo"><?= Config::$view['stopka'] ?> &copy;</a>
 </footer>
 </div>
 </body>
 </html>
 
-<?php

@@ -8,12 +8,14 @@ namespace src;
  *        
  */
 class Util {
-	public function __construct() {}
+    public static function doHedera($url) {
+        header("location: " . $url);
+    }
 	public static function self() {
 		$wyraz = array('/Cemek_PHP/', '.php');
 		return str_replace($wyraz, '', $_SERVER['PHP_SELF']);
 	}
-	public function serverIdent2() {
+	public static function serverIdent2() {
 	    $indicesServer = array('PHP_SELF',
 	        'PHP_AUTH_DIGEST',
 	        'PHP_AUTH_USER',

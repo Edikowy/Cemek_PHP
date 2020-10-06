@@ -1,84 +1,74 @@
 <?php
-
 namespace src;
 
-/**
- *
- * @author Edikowy
- *        
- */
-class Control {
-    public function __construct() {}
-    public function sluchacz() {
+class Control
+{
+    
+    public function uchoGet()
+    {
+        if (! $_GET) {
+            return View::show('index');
+        }
         if ($_GET) {
-            $util = new Util();
-            $view = new View();
-            $linki = (int)$_GET['linki'];
+            $linki = (int) $_GET['linki'];
             switch ($linki) {
                 case 1:
-                    echo 'link 1</br>Alfa</br>';
-                    $util ->serverIdent2();
-                break;
-                
+                    return View::show('alfa');
+                    break;
+                    
                 case 2:
-                    echo 'link 2</br>Bravo</br>';
-                break;
-                
+                    return View::show('bravo');
+                    break;
+                    
                 case 3:
-                    echo 'link 3</br>Certo</br>';
-                break;
+                    return View::show('certo');
+                    break;
                     
                 case 4:
-                    echo 'link 4</br>Delta</br>';
-                break;
+                    return View::show('delta');
+                    break;
                     
                 case 5:
-                    echo 'link 5</br>Echo</br>';
-                break;
+                    return View::show('echo');
+                    break;
                     
                 case 6:
-                    echo 'link 6</br>Register</br>';
-                    echo $view -> showFormRegist();
-                break;
-                
+                    return View::show('register');
+                    break;
+                    
                 case 7:
-                    echo 'link 7</br>Admin</br>';
-                    echo $view -> showFormAdminNewEmail();
-                    echo $view -> showFormAdminNewPass();
-                    echo $view -> showFormAdminDel();
-                break;
-                
+                    return View::show('admin');
+                    break;
+                    
                 default:
-                    echo 'default</br>';
-                break;
+                    return View::show('index');
+                    break;
             }
             unset($_GET);
         }
+    }
+    
+    public function uchoPost()
+    {
         if ($_POST) {
             $model = new User();
             if (isset($_POST['form_login'])) {
-                $model -> login($_POST['form_login']['login'], $_POST['form_login']['pass']);
+                return $model->login($_POST['form_login']['login'], $_POST['form_login']['pass']);
             }
             if (isset($_POST['form_regist'])) {
-                $model -> register($_POST['form_regist']['new_login']
-                    , $_POST['form_regist']['new_email']
-                    , $_POST['form_regist']['new_pass']
-                    , $_POST['form_regist']['new_pass2']);
+                return $model->register($_POST['form_regist']['new_login'], $_POST['form_regist']['new_email'], $_POST['form_regist']['new_pass'], $_POST['form_regist']['new_pass2']);
             }
             if (isset($_POST['form_admin_newemail'])) {
-                $model -> newEmail($_POST['form_admin_newemail']['new_email']
-                    , $_POST['form_admin_newemail']['pass']);
+                return $model->newEmail($_POST['form_admin_newemail']['new_email'], $_POST['form_admin_newemail']['pass']);
             }
             if (isset($_POST['form_admin_newpass'])) {
-                $model -> newPass($_POST['form_admin_newpass']['pass']
-                    , $_POST['form_admin_newpass']['new_pass']
-                    , $_POST['form_admin_newpass']['new_pass2']);
+                return $model->newPass($_POST['form_admin_newpass']['pass'], $_POST['form_admin_newpass']['new_pass'], $_POST['form_admin_newpass']['new_pass2']);
             }
             if (isset($_POST['form_admin_del'])) {
-                $model -> delUser();
+                return $model->delUser();
             }
             unset($_POST);
-        } 
+        }
     }
 }
 
