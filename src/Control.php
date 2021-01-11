@@ -6,6 +6,8 @@ class Control
     
     public function uchoGet()
     {
+        //TODO zamienić swicza na iteracje tablicy
+        
         if (! $_GET) {
             return View::show('index');
         }

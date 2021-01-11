@@ -15,7 +15,10 @@ class Engine
         $this->host_name = $host_name;
         $url = explode('?', $url);
         $this->file = $url[0];
-        $this->get = $url[1];
+        //TODO czy tutaj ma rorpoznawać geta i jak
+        if ($url[1]= !null) {
+            $this->get = $url[1];
+        }
     }
 
     public function start()
@@ -30,10 +33,15 @@ class Engine
 
         $view->show('stopka');
     }
+    
+    //TODO dodać sesje , systemowa i usera wykrywanie czy istnieje
+    // twożenie zapis koniec i nowy numer
+    
+    //TODO dodać kuki zapis odczyt iteracja i RODO
 
-    public function inklud($file, $path)
+    public function inklud($path, $file, $exp)
     {
-        return include $path . $file . '.php';
+        return include $path . $file . $exp;
     }
 }
 

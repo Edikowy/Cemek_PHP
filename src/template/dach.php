@@ -9,12 +9,15 @@ use src\Util;
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
 <?php foreach(Config::$view['style'] as $styl): ?>
-<link href="<?= $styl ?>" rel="stylesheet">
+	<link href="<?= $styl ?>" rel="stylesheet">
 <?php endforeach;?>
+
 <?php foreach(Config::$view['skrypty'] as $skrypt): ?>
-<script src="<?= $skrypt ?>"></script>
+	<script src="<?= $skrypt ?>"></script>
 <?php endforeach;?>
+
 <title><?= Util::self() ?></title>
 </head>
 <body>
@@ -30,9 +33,11 @@ use src\Util;
 <div id="prawy"></div>
 <nav id="linki">
 <ul>
+
 <?php foreach(Config::$view['linki'] as $n => list($nazwa, $id, $url)): ?>
-<li><a href="<?= $url ?>" id="<?= $id ?>"><?= $nazwa ?></a></li>
+	<li><a href="<?= $url ?>" id="<?= $id ?>"><?= $nazwa ?></a></li>
 <?php endforeach;?>
+
 </ul>
 </nav>
 </header>
