@@ -16,13 +16,14 @@ class Engine
         $url = explode('?', $url);
         $this->file = $url[0];
         //TODO czy tutaj ma rorpoznawać geta i jak
-        if ($url[1]= !null) {
+        if ($url[1] = ! null) {
             $this->get = $url[1];
         }
     }
 
     public function start()
     {
+        $this->sesja();
         $control = new Control();
 
         $view = new View();
@@ -36,12 +37,22 @@ class Engine
     
     //TODO dodać sesje , systemowa i usera wykrywanie czy istnieje
     // twożenie zapis koniec i nowy numer
+    public function sesja()
+    {
+        
+        
+        
+        if (! empty($_SESSION)) {
+            session_destroy();
+        }
+        
+    }
+    
+    
+    
     
     //TODO dodać kuki zapis odczyt iteracja i RODO
 
-    public function inklud($path, $file, $exp)
-    {
-        return include $path . $file . $exp;
-    }
+    
 }
 
