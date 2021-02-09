@@ -1,16 +1,22 @@
 <?php
 namespace src;
+
 // TODO dodać do templatek formulaże
+// TODO poprawic !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 class View
 {
 
-    public function show($templates)
+    public function show($dir, $templates, $ext = '.php')
     {
-        return include 'src/template/' . $templates . '.php';
+        include $dir . $templates . $ext;
     }
 
-    public function showKluczowe()
-    {}
+    public function showLinki()
+    {
+        foreach (Config::$linki as $nazwa => $url) {
+            ?><li><a href="<?= $url ?>" id="<?= $nazwa ?>"><?= $nazwa ?></a></li><?php
+        }
+    }
 
     public function addFile($dir, $ext, $start, $end)
     {
@@ -24,14 +30,5 @@ class View
             }
         }
     }
-
-    public function showLinki()
-    {
-        foreach (Config::$view['linki'] as $n => list ($nazwa, $id, $url)) {
-            ?><li><a href="<?= $url ?>" id="<?= $id ?>"><?= $nazwa ?></a></li><?php
-        }
-    }
-
-
 }
 

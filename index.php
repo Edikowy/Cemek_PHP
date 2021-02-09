@@ -1,12 +1,14 @@
 <?php
 use src\Engine;
 
-//TODO autoload
+// TODO autoload
 spl_autoload_extensions('.php');
 spl_autoload_register('autoload');
-function autoload($class) {
-    set_include_path('./src/');
-    spl_autoload($class);
+
+function autoload($class)
+{
+    set_include_path(__DIR__ . '/src/');
+    spl_autoload(strtolower($class));
 }
 // include 'src/inkludy.php';
 

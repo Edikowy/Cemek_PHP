@@ -7,46 +7,47 @@ class Control
     public function uchoGet()
     {
         //TODO zamienić swicza na iteracje tablicy
-        
+        $view = new View();
         if (! $_GET) {
-            return View::show('index');
+            $view->show(Config::$dir['template'], 'index');
         }
         if ($_GET) {
             $linki = (int) $_GET['linki'];
             switch ($linki) {
                 case 1:
-                    return View::show('alfa');
+                    $view->show(Config::$dir['template'], 'alfa');
                     break;
                     
                 case 2:
-                    return View::show('bravo');
+                    $view->show(Config::$dir['template'], 'bravo');
                     break;
                     
                 case 3:
-                    return View::show('certo');
+                    $view->show(Config::$dir['template'], 'certo');
                     break;
                     
                 case 4:
-                    return View::show('delta');
+                    $view->show(Config::$dir['template'], 'delta');
                     break;
                     
                 case 5:
-                    return View::show('echo');
+                    $view->show(Config::$dir['template'], 'echo');
                     break;
                     
                 case 6:
-                    return View::show('register');
+                    $view->show(Config::$dir['template'], 'register');
                     break;
                     
                 case 7:
-                    return View::show('admin');
+                    $view->show(Config::$dir['template'], 'admin');
                     break;
                     
                 default:
-                    return View::show('index');
+                    $view->show(Config::$dir['template'], 'index');
                     break;
             }
             unset($_GET);
+            return $view;
         }
     }
     
@@ -55,21 +56,22 @@ class Control
         if ($_POST) {
             $model = new User();
             if (isset($_POST['form_login'])) {
-                return $model->login($_POST['form_login']['login'], $_POST['form_login']['pass']);
+                $model->login($_POST['form_login']['login'], $_POST['form_login']['pass']);
             }
             if (isset($_POST['form_regist'])) {
-                return $model->register($_POST['form_regist']['new_login'], $_POST['form_regist']['new_email'], $_POST['form_regist']['new_pass'], $_POST['form_regist']['new_pass2']);
+                $model->register($_POST['form_regist']['new_login'], $_POST['form_regist']['new_email'], $_POST['form_regist']['new_pass'], $_POST['form_regist']['new_pass2']);
             }
             if (isset($_POST['form_admin_newemail'])) {
-                return $model->newEmail($_POST['form_admin_newemail']['new_email'], $_POST['form_admin_newemail']['pass']);
+                $model->newEmail($_POST['form_admin_newemail']['new_email'], $_POST['form_admin_newemail']['pass']);
             }
             if (isset($_POST['form_admin_newpass'])) {
-                return $model->newPass($_POST['form_admin_newpass']['pass'], $_POST['form_admin_newpass']['new_pass'], $_POST['form_admin_newpass']['new_pass2']);
+                $model->newPass($_POST['form_admin_newpass']['pass'], $_POST['form_admin_newpass']['new_pass'], $_POST['form_admin_newpass']['new_pass2']);
             }
             if (isset($_POST['form_admin_del'])) {
-                return $model->delUser();
+                $model->delUser();
             }
             unset($_POST);
+            return $model;
         }
     }
 }

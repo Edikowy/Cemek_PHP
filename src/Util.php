@@ -8,8 +8,6 @@ namespace src;
  *        
  */
 class Util {
-    
-    
     public static function doHedera($url) {
         header("location: " . $url);
     }
