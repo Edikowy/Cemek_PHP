@@ -28,7 +28,7 @@ pełni obiektowy (</FONT><A HREF="https://pl.wikipedia.org/wiki/Programowanie_ob
 z MVC (</FONT><A HREF="https://pl.wikipedia.org/wiki/Model-View-Controller"><FONT FACE="Palatino Linotype, serif"><FONT SIZE=1 STYLE="font-size: 8pt">(Model View Controler)</FONT></FONT></A><FONT FACE="Palatino Linotype, serif"><FONT SIZE=1 STYLE="font-size: 8pt">
  </FONT>).
 
-</P>
+
 <P CLASS="wcięcie-pierwszego-wiersza"><FONT FACE="Palatino Linotype, serif">Baza
 danych z interfejsu PDO.</FONT></P>
 <P CLASS="wcięcie-pierwszego-wiersza"><FONT FACE="Palatino Linotype, serif">Dwuetapowa
