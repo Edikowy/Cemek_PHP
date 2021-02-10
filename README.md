@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
 <HTML>
 
 <BODY LANG="pl-PL" LINK="#000080" VLINK="#800000" DIR="LTR">
@@ -61,5 +61,4 @@ języka (multilanguage).</FONT></P>
 </P>
 <P STYLE="margin-bottom: 0cm"><BR>
 </P>
-</BODY>
-</HTML>
+
