@@ -8,6 +8,13 @@ class View2
         include $path . $template . $ext;
     }
     
+    public function dodajLinki()
+    {
+        foreach (Config::$linki as $nazwa => $url) {
+            ?><li><a href="<?= $url ?>" id="<?= $nazwa ?>"><?= $nazwa ?></a></li><?php
+        }
+    }
+    
     public function dodajTablice($tablica, $template)
     {
         foreach ($tablica as $klucz) {
@@ -15,7 +22,7 @@ class View2
         }
     }
     
-    public function dodajPlik($path, $ext, $template)
+    public function dodajPliki($path, $ext, $template)
     {
         $pliki = scandir($path);
         foreach ($pliki as $plik) {

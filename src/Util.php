@@ -8,10 +8,6 @@ namespace src;
  *        
  */
 class Util {
-    public static function doHedera($url) {
-        header("location: " . $url);
-    }
-    
     //TODO dodać do self wykrywanie podstrony z geta
     public static function self() {
         $wyraz = ['/Cemek_PHP/', '.php'];

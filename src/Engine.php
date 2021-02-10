@@ -7,7 +7,7 @@ class Engine
     public $file;
     public $get;
 
-    function __construct($host_name, $url)
+    public function __construct($host_name, $url)
     {
         $this->host_name = $host_name;
         $url = explode('?', $url);
@@ -24,8 +24,7 @@ class Engine
         $control = new Control();
         $view = new View();
         $view->show(Config::$dir['template'], 'dach');
-        $control->uchoGet();
-//         echo __DIR__;
+        $view = $control->uchoGet();
         $control->uchoPost();
         $view->show(Config::$dir['template'], 'stopka');
     }
@@ -50,5 +49,9 @@ class Engine
         }
     }
     // TODO dodać kuki zapis odczyt iteracja i RODO
+    
+    public static function doHedera($url) {
+        header("location: " . $url);
+    }
 }
 

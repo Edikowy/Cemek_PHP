@@ -43,7 +43,7 @@ class Config
     ];
     static $sesja = [
         'ses_admin_name' => 'System',
-        'ses_name' => 'user'
+        'ses_name' => 'User'
     ];
 }
 
