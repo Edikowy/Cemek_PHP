@@ -20,7 +20,7 @@ do bazy danych zgodny z PDO.</FONT></P>
 <H1 CLASS="western"><FONT FACE="Palatino Linotype, serif">Założenia główne </FONT>
 </H1>
 <P CLASS="wcięcie-pierwszego-wiersza"><FONT FACE="Palatino Linotype, serif">W
-pełni obiektowy (</FONT><A HREF="https://pl.wikipedia.org/wiki/Programowanie_obiektowe"><FONT FACE="Palatino Linotype, serif">OOP</FONT></FONT></A><FONT FACE="Palatino Linotype, serif">
+pełni obiektowy (</FONT><A HREF="https://pl.wikipedia.org/wiki/Programowanie_obiektowe"><FONT FACE="Palatino Linotype, serif">OOP</FONT></A><FONT FACE="Palatino Linotype, serif">
 </FONT></FONT>).
 
 </P>
