@@ -3,55 +3,92 @@ namespace src;
 
 class Engine
 {
+    
     public $host_name;
     public $file;
+    
+    public $date;
+    
+    public $is_get;
     public $get;
-
+    
+    public $is_post;
+    
+    public $is_ses_old;
+    public $is_ses_kuki;
+    
     public function __construct($host_name, $url)
     {
         $this->host_name = $host_name;
         $url = explode('?', $url);
         $this->file = $url[0];
-        // TODO czy tutaj ma rorpoznawać geta i jak
-        if ($url[1] = ! null) {
+        // ----------------------------
+        if ($_GET) {
             $this->get = $url[1];
         }
     }
-
-    public function start()
+    
+    public function start($date)
     {
-        $this->sesja();
+        $this->date = $date;
+        $this->sesStart();
+        // ----------------------------
+        if (! $_GET) {
+            $this->is_get = FALSE;
+        } else {
+            $this->is_get = TRUE;
+            $klucz = $this->get;
+            $klucz = explode('=', $klucz);
+            $klucz = $klucz[0];
+            if (array_key_exists($klucz, Config::$tags)) {
+                // ---
+                echo '<br>klucz -' . $klucz . ' wartosc -' . Config::$tags[$klucz]; 
+                //
+                //
+            }
+            unset($_GET);
+        }
+        // ----------------------------
+        if (! $_POST) {
+            $this->is_post = FALSE;
+        } else {
+            $this->is_post = TRUE;
+            //
+            //
+            unset($_POST);
+        }
+        // ----------------------------
         $control = new Control();
         $view = new View();
-        $view->show(Config::$dir['template'], 'dach');
-        $view = $control->uchoGet();
+        $view->dodajInclude('dach');
+        $control->uchoGet();
         $control->uchoPost();
-        $view->show(Config::$dir['template'], 'stopka');
+        $view->dodajInclude('stopka');
+        // ----------------------------
     }
-
-    // TODO dodać sesje , systemowa i usera wykrywanie czy istnieje
-    // twożenie zapis koniec i nowy numer
-    public function sesja()
-    {
-        if (! empty($_SESSION)) {
-            session_destroy();
+    
+    public function sesStart() {
+        if (isset($_SESSION)) {
+            $this->is_ses_old = TRUE;
+            $this->sesStop();
         }
-        if (isset($_COOKIE[Config::$sesja['ses_name']])) {
-            session_name(Config::$sesja['ses_name']);
-            if (isset($_COOKIE[Config::$sesja['ses_id']])) {
-                session_id($_COOKIE[Config::$sesja['ses_id']]);
-            }
+        if (isset($_COOKIE[Config::$ses['ses_name']])) {
+            session_name(Config::$ses['ses_name']);
+            session_id($_COOKIE[Config::$ses['ses_name']]);
             session_start([
-                'cookie_lifetime' => (Config::$kuki['kuki_exp'])
+                'cookie_lifetime' => Config::$ses['ses_exp']
             ]);
         } else {
-            session_start();
+            session_name(Config::$ses['ses_name']);
+            session_start([
+                'cookie_lifetime' => Config::$ses['ses_exp']
+            ]);
         }
     }
-    // TODO dodać kuki zapis odczyt iteracja i RODO
     
-    public static function doHedera($url) {
-        header("location: " . $url);
+    public function sesStop() {
+        session_destroy();
+        $this->sesStart();
     }
 }
 

@@ -9,12 +9,13 @@ namespace src;
 class Config
 {
     static $dir = [
-        'dir' => 'src/',
-        'template' => 'src/template/',
-    ];
-    static $host = [
-        'name' => '',
-        'file' => ''
+        'root_dir' => './',
+        'style_dir' => 'css/',
+        'script_dir' => 'js/',
+        'app_dir' => 'src/',
+        'template_dir' => 'src/template/',
+        'template_form_dir' => 'src/template/form/',
+        'template_elem_dir' => 'src/template/elem/'
     ];
     static $db = [
         'db_driver' => 'mysql',
@@ -24,26 +25,37 @@ class Config
         'db_user_pass' => '',
         'db_port' => '3306'
     ];
-    static $linki = [
-        'Alfa' => 'index.php?linki=1',
-        'Bravo' => 'index.php?linki=2',
-        'Certo' => 'index.php?linki=3',
-        'Delta' => 'index.php?linki=4',
-        'Echo' => 'index.php?linki=5',
-        'Register' => 'index.php?linki=6',
-        'Admin' => 'index.php?linki=7'
-    ];
-    static $view = [
-        'logo' => 'Cemek_PHP',
-        'stopka' => 'Cemek_PHP',
+    static $host = [
+        'name' => '',
+        'file' => 'index.php'
     ];
     static $kluczowe = [];
-    static $kuki = [
-        'kuki_exp' => '30 * 24 * 3600'
+    static $kuki = [];
+    static $linki = [
+        'Alfa' => 'index.php?alfa=1',
+        'Bravo' => 'index.php?bravo=1',
+        'Certo' => 'index.php?certo=1',
+        'Delta' => 'index.php?delta=1',
+        'Echo' => 'index.php?echo=1',
+        'Register' => 'index.php?register=1',
+        'Admin' => 'index.php?admin=1'
     ];
-    static $sesja = [
-        'ses_admin_name' => 'System',
-        'ses_name' => 'User'
+    static $ses = [
+        'ses_name' => 'PHPSESSID',
+        'ses_exp' => '30 * 24 * 3600'
+    ];
+    static $tags = [
+        'alfa' => 'Alfa=1',
+        'bravo' => 'Bravo=1',
+        'certo' => 'Certo=1',
+        'delta' => 'Delta=1',
+        'echo' => 'Echo=1',
+        'register' => 'Register=1',
+        'admin' => 'Admin=1'
+    ];
+    static $view = [
+        'logo' => 'Cemek',
+        'stopka' => 'Cemek'
     ];
 }
 

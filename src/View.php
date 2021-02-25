@@ -1,31 +1,31 @@
 <?php
 namespace src;
 
-// TODO dodać do templatek formulaże
-// TODO poprawic !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+use DirectoryIterator;
+
 class View
 {
-
-    public function show($dir, $templates, $ext = '.php')
+    
+    public function dodajInclude($template, $template_path = 'src/template/', $template_ext = '.php')
     {
-        include $dir . $templates . $ext;
+        include $template_path . $template . $template_ext;
     }
-
-    public function showLinki()
+    
+    public function dodajTablice($tablica, $template, $template_path = 'src/template/', $template_ext = '.php')
     {
-        foreach (Config::$linki as $nazwa => $url) {
-            ?><li><a href="<?= $url ?>" id="<?= $nazwa ?>"><?= $nazwa ?></a></li><?php
+        foreach ($tablica as $klucz => $wartosc) {
+            include $template_path . $template . $template_ext;
         }
     }
-
-    public function addFile($dir, $ext, $start, $end)
+    
+    public function dodajPliki($dir, $ext, $template, $template_path = 'src/template/', $template_ext = '.php')
     {
-        $pliki = scandir($dir);
-        foreach ($pliki as $plik) {
-            if ($plik != '.' && $plik != '..') {
-                $f = explode('.', $plik);
-                if ($f[1] = $ext) {
-                    echo $start . $dir . $plik . $end;
+        foreach (new DirectoryIterator($dir) as $file) {
+            if (! $file->isDot()) {
+                if ($file->isFile()) {
+                    if ($file->getExtension() == $ext) {
+                        include $template_path . $template . $template_ext;
+                    }
                 }
             }
         }

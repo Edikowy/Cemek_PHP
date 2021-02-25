@@ -1,1 +1,0 @@
-<link href="<?= $path . $plik ?>" rel="stylesheet">
