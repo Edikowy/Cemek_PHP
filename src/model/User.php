@@ -2,8 +2,6 @@
 
 namespace src\model;
 
-use PDO;
-use src\Engine;
 use src\control\Control;
 
 /**
