@@ -9,6 +9,7 @@ namespace src\control;
 class Lokale extends Control
 {
 
+    // do usu
     public function index()
     {
         $modelLokale = new \src\model\Lokale();
@@ -18,7 +19,19 @@ class Lokale extends Control
         $view->render('index', DIR_TPL_LOKALE);
         $view->render('stopka');
     }
+    // do usu
+    
+    public function linki()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\Lokale();
+        $view->linki = $modelLokale->linki();
+        $view->render('dach');
+        $view->render('index', DIR_TPL_LOKALE);
+        $view->render('stopka');
+    }
 
+    // do usu
     public function one()
     {
         $modelLokale = new \src\model\Lokale();
@@ -29,6 +42,7 @@ class Lokale extends Control
         $view->render('one', DIR_TPL_LOKALE);
         $view->render('stopka');
     }
+    // do usu
 
     public function add()
     {

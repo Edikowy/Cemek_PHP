@@ -103,12 +103,12 @@ class User extends Model
         }
         // zakres()
         // --------------------------------------------------------------------------------
-        // to wypada
+        // to opcja
         if ($pass != $pass2) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_pass2'] = "Hasła nie identyczne.";
         }
-        // to wypada
+        // to opcja
         $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
         // --------------------------------------------------------------------------------
         // czyJestTaki()

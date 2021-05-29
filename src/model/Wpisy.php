@@ -40,7 +40,7 @@ class Wpisy extends Model
 
     public function lokal($id)
     {
-        $sql = 'SELECT id, name, url, title, content, date_add, autor FROM wpisy where id_lokale=' . (int) $id;
+        $sql = 'SELECT id, name, url, title, content, date_add, autor FROM wpisy WHERE id_lokale=' . (int) $id;
         $query = $this->conn->query($sql);
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);
         if (! empty($result)) {

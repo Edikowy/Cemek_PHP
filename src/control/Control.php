@@ -13,4 +13,8 @@ class Control
     {
         header("location: " . $url);
     }
+    
+    public function ses($param) {
+        ;
+    }
 }
