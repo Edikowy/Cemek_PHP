@@ -3,6 +3,11 @@ namespace src\view;
 
 use DirectoryIterator;
 
+/**
+ *
+ * @author Edikowy
+ *        
+ */
 class View
 {
 

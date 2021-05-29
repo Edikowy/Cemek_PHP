@@ -1,28 +1,24 @@
 <?php
 namespace src\control;
 
+/**
+ *
+ * @author Edikowy
+ *        
+ */
 class Lokale extends Control
 {
-    
+
     public function index()
     {
-        //         $modelLokale = new \src\model\Lokale();
-        //         $view = new \src\view\Lokale();
-        //         $view->lokale = $modelLokale->index();
-        //         $view->render('dach');
-        //         $view->render('index', DIR_TPL_LOKALE);
-        //         $view->render('stopka');
         $modelLokale = new \src\model\Lokale();
-        $modelWpisy = new \src\model\Wpisy();
-        $view = new \src\view\Wpisy();
+        $view = new \src\view\Lokale();
         $view->lokale = $modelLokale->index();
-        $view->wpisy = $modelWpisy->index();
         $view->render('dach');
-        $view->render('user_register', DIR_TPL_FORM);
-        $view->render('index', DIR_TPL_WPISY);
+        $view->render('index', DIR_TPL_LOKALE);
         $view->render('stopka');
     }
-    
+
     public function one()
     {
         $modelLokale = new \src\model\Lokale();
@@ -33,7 +29,7 @@ class Lokale extends Control
         $view->render('one', DIR_TPL_LOKALE);
         $view->render('stopka');
     }
-    
+
     public function add()
     {
         $modelLokale = new \src\model\Lokale();
@@ -48,7 +44,7 @@ class Lokale extends Control
             $view->render('stopka');
         }
     }
-    
+
     public function del()
     {
         $modelLokale = new \src\model\Lokale();

@@ -2,7 +2,6 @@
 
 <?= $this->wpis['id']; ?><br>
 <?= $this->wpis['name']; ?><br>
-<?= $this->wpis['url']; ?><br>
 <?= $this->wpis['title']; ?><br>
 <?= $this->wpis['content']; ?><br>
 <?= $this->wpis['date_add']; ?><br>

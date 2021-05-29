@@ -1,27 +1,72 @@
 <?php
 namespace src\control;
 
-
-
+/**
+ *
+ * @author Edikowy
+ *        
+ */
 class User extends Control
 {
-    public function login() {
-        ;
+
+    public function login()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\User();
+        $view->lokale = $modelLokale->index();
+        $view->render('dach');
+        $view->render('login', DIR_TPL_USER);
+        $view->render('stopka');
     }
-    public function logout() {
-        ;
+
+    public function logout()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\User();
+        $view->lokale = $modelLokale->index();
+        $view->render('dach');
+        $view->render('logout', DIR_TPL_USER);
+        $view->render('stopka');
     }
-    public function register() {
-        ;
+
+    public function register()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\User();
+        $view->lokale = $modelLokale->index();
+        $view->render('dach');
+        $view->render('register', DIR_TPL_USER);
+        $view->render('stopka');
     }
-    public function newemail() {
-        ;
+
+    public function newemail()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\User();
+        $view->lokale = $modelLokale->index();
+        $view->render('dach');
+        $view->render('newemail', DIR_TPL_USER);
+        $view->render('stopka');
     }
-    public function newpass() {
-        ;
+
+    public function newpass()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\User();
+        $view->lokale = $modelLokale->index();
+        $view->render('dach');
+        $view->render('newpass', DIR_TPL_USER);
+        $view->render('stopka');
     }
-    public function deluser() {
-        ;
+
+    public function deluser()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $view = new \src\view\User();
+        $view->lokale = $modelLokale->index();
+        $view->render('dach');
+        $view->render('deluser', DIR_TPL_USER);
+        $view->render('stopka');
     }
 }
 

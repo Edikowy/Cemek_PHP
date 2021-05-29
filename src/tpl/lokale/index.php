@@ -3,13 +3,6 @@
 	
 	<?= $lokal['id']; ?>
 	<?= $lokal['name']; ?>
-	<?= $lokal['url']; ?>
 	<br>
-<?php endforeach; ?>
 
-<pre>
-<?php 
-// var_dump($_SESSION);
-// echo PHP_VERSION;
-?>
-</pre>
+<?php endforeach; ?>

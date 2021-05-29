@@ -21,20 +21,20 @@
 
 <div id="prawy">
 <?php 
-    if ((isset($_SESSION['user']['loged'])) && ($_SESSION['user']['loged'] ==  TRUE)) {
-        echo 'User- ' . $_SESSION['user']['login'] . '<br>';
-        echo 'Email- ' . $_SESSION['user']['email'] . '<br>';
-        echo 'Id- ' . $_SESSION['user']['id'] . '<br>';
-        $this->render('user_logout', DIR_TPL_FORM);
-    } else {
-        $this->render('user_login', DIR_TPL_FORM);
-    }
+if ((isset($_SESSION['user']['loged'])) && ($_SESSION['user']['loged'] ==  TRUE)) {
+    echo 'User- ' . $_SESSION['user']['login'] . '<br>';
+    echo 'Email- ' . $_SESSION['user']['email'] . '<br>';
+    echo 'Id- ' . $_SESSION['user']['id'] . '<br>';
+    $this->render('user_logout', DIR_TPL_FORM);
+} else {
+    $this->render('user_login', DIR_TPL_FORM);
+}
 ?>
 </div>
 
 <nav id="linki"><ul>
 <?php foreach($this->lokale as $lokal): ?>
-	<li><a href="?vidok=lokale&akcja=one&id=<?= $lokal['id']; ?>" id="<?= $lokal['name']; ?>"><?= $lokal['name']; ?></a></li>
+	<li><a href="?vidok=wpisy&akcja=lokal&id=<?= $lokal['id']; ?>" id="<?= $lokal['name']; ?>"><?= $lokal['name']; ?></a></li>
 <?php endforeach; ?>
 </ul></nav>
 

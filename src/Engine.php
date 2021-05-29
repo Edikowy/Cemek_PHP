@@ -3,23 +3,27 @@ namespace src;
 
 use src\model\User;
 
+/**
+ *
+ * @author Edikowy
+ *        
+ */
 class Engine
 {
-    
+
     public $date;
-    
+
     public function __construct()
     {
-        
         $this->date = gmdate("Y.m.d-H:i:s");
     }
-    
+
     public function start()
     {
         $this->sesStart();
         $this->uchoPost();
         if (! $_GET) {
-            $control = new \src\control\Lokale();
+            $control = new \src\control\Wpisy();
             return $control->index();
         } else {
             if ($_GET['vidok'] == 'lokale') {
@@ -37,18 +41,17 @@ class Engine
             }
         }
     }
-    
-    
+
     // -------------------------------------------------------------------
     // do start()
-    public function uchoPost() {
-        //         if ($_POST) {
-        //             $post = $_POST[$form];// ?????????????????????????????/ z posta nazwe formulaza
-        //             $post = explode('_', $post);
-        //             $klas = $post[0];
-        //             $funk = $post[1];
-        //         }
-        
+    public function uchoPost()
+    {
+        // if ($_POST) {
+        // $post = $_POST[$form];// ?????????????????????????????/ z posta nazwe formulaza
+        // $post = explode('_', $post);
+        // $klas = $post[0];
+        // $funk = $post[1];
+        // }
         if ($_POST) {
             $model = new User();
             if (isset($_POST['user_login'])) {
@@ -75,12 +78,14 @@ class Engine
             return $model;
         }
     }
+
     // do start()
     // -------------------------------------------------------------------
-    
+
     // -------------------------------------------------------------------
     // Szajs!!!!!!!!!!
-    public function sesStart() {
+    public function sesStart()
+    {
         if (isset($_SESSION)) {
             $this->sesStop();
         }
@@ -94,8 +99,10 @@ class Engine
             $_SESSION['ses']['id'] = session_id();
         }
     }
+
     // Szajs!!!!!!!!!!
-    public function sesKont() {
+    public function sesKont()
+    {
         session_set_cookie_params(SES_EXP);
         session_name(SES_NAME);
         session_id($_COOKIE[SES_NAME]);
@@ -103,8 +110,10 @@ class Engine
         $_SESSION['ses']['name'] = session_name();
         $_SESSION['ses']['id'] = session_id();
     }
+
     // Szajs!!!!!!!!!!
-    public function sesStop() {
+    public function sesStop()
+    {
         session_write_close();
         session_destroy();
         $this->sesStart();

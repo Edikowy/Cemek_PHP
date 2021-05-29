@@ -1,8 +1,11 @@
 <?php
 namespace src\view;
 
-
-
+/**
+ *
+ * @author Edikowy
+ *        
+ */
 class User extends View
 {
 

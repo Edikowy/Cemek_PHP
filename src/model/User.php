@@ -1,5 +1,4 @@
 <?php
-
 namespace src\model;
 
 use src\control\Control;
@@ -7,10 +6,11 @@ use src\control\Control;
 /**
  *
  * @author Edikowy
- *
+ *        
  */
-class User extends Model {
-    
+class User extends Model
+{
+
     public function __construct()
     {
         parent::__construct();
@@ -26,11 +26,11 @@ class User extends Model {
                 $_SESSION['user']['login'] = $result["login"];
                 $_SESSION['user']['pass'] = $result["pass"];
                 $_SESSION['user']['email'] = $result["email"];
-                $_SESSION['user']['loged'] =  TRUE;
+                $_SESSION['user']['loged'] = TRUE;
             }
         }
     }
-    
+
     public function login($login, $pass)
     {
         $login = addslashes($login);
@@ -45,7 +45,7 @@ class User extends Model {
                 $_SESSION['user']['login'] = $result["login"];
                 $_SESSION['user']['pass'] = $result["pass"];
                 $_SESSION['user']['email'] = $result["email"];
-                $_SESSION['user']['loged'] =  TRUE;
+                $_SESSION['user']['loged'] = TRUE;
                 Control::doHedera('index.php'); // ?????????????????????????
                 return TRUE;
             } else {
@@ -57,15 +57,15 @@ class User extends Model {
             return NULL;
         }
     }
-    
+
     public function logout()
     {
-        if ($_SESSION['user']['loged'] ==  TRUE) {
+        if ($_SESSION['user']['loged'] == TRUE) {
             unset($_SESSION['user']);
             Control::doHedera('index.php'); // ?????????????????????????
         }
     }
-    
+
     public function register($new_login, $new_email, $new_pass, $new_pass2)
     {
         $login = addslashes($new_login);
@@ -114,8 +114,8 @@ class User extends Model {
         // czyJestTaki()
         $sql = "SELECT email FROM users WHERE email = '$email'";
         $query = $this->conn->query($sql);
-        $result = $query->fetch(\PDO::FETCH_ASSOC);
-        if (isset($result)) {
+        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
+        if (! empty($result)) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_email'] = "Istnieje taki e-mail!";
         }
@@ -124,73 +124,79 @@ class User extends Model {
         // czyJestTaki()
         $sql = "SELECT login FROM users WHERE login = '$login'";
         $query = $this->conn->query($sql);
-        $result = $query->fetch(\PDO::FETCH_ASSOC);
-        if (isset($result)) {
+        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
+        if (! empty($result)) {
             $all_OK = FALSE;
             $_SESSION['err_user']['new_login'] = "Istnieje taki nick!";
         }
         // czyJestTaki()
         // --------------------------------------------------------------------------------
         if ($all_OK) {
-            //             $remote = $_SERVER['REMOTE_ADDR'];
-            //             $agent = $_SERVER['HTTP_USER_AGENT'];
-            //             $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email', '1', NULL, TRUE, '$remote', '$agent')";
-            
+            // $remote = $_SERVER['REMOTE_ADDR'];
+            // $agent = $_SERVER['HTTP_USER_AGENT'];
+            // $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email', '1', NULL, TRUE, '$remote', '$agent')";
+
             // --------------------------------------------------------------------------------
-            //             $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email')";
-            //             $query = $this->conn->prepare($sql);
-            //             $query->execute();
-            
-            $sql = 'INSERT INTO users (NULL, login, pass, email) VALUES (NULL, :login, :pass, :email)';
+            // $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email')";
+            // $query = $this->conn->prepare($sql);
+            // $query->execute();
+
+            $sql = 'INSERT INTO users (id, login, email, pass) VALUES (NULL, :login, :email, :pass)';
             $query = $this->conn->prepare($sql);
             $query->bindValue(':login', $login, \PDO::PARAM_STR);
-            $query->bindValue(':pass', $pass_hash, \PDO::PARAM_STR);
             $query->bindValue(':email', $email, \PDO::PARAM_STR);
+            $query->bindValue(':pass', $pass_hash, \PDO::PARAM_STR);
+
             $query->execute();
             // --------------------------------------------------------------------------------
-            
+
             $_SESSION['user']['register_ok'] = TRUE;
             Control::doHedera('index.php'); // ?????????????????????????
         }
         // --------------------------------------------------------------------------------
     }
-    
+
     public function newemail($new_email, $pass)
     {
-        
         echo 'newEmail';
-        
+
         $new_email = addslashes($new_email);
         $pass = addslashes($pass);
     }
-    
+
     public function newpass($pass, $new_pass, $new_pass2)
     {
-        
         echo 'newPass';
-        
+
         $pass = addslashes($pass);
         $new_pass = addslashes($new_pass);
         $new_pass2 = addslashes($new_pass2);
     }
-    
+
     public function deluser($pass)
     {
-        
         echo 'delUser';
-        
+
         $pass = addslashes($pass);
     }
-    private function czyJestTaki() {
+
+    private function czyJestTaki()
+    {
         ;
     }
-    private function zakres() {
+
+    private function zakres()
+    {
         ;
     }
-    private function sanityza() {
+
+    private function sanityza()
+    {
         ;
     }
-    private function alfanum() {
+
+    private function alfanum()
+    {
         ;
     }
 }

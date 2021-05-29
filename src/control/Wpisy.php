@@ -1,11 +1,14 @@
 <?php
 namespace src\control;
 
-
-
+/**
+ *
+ * @author Edikowy
+ *        
+ */
 class Wpisy extends Control
 {
-    
+
     public function index()
     {
         $modelLokale = new \src\model\Lokale();
@@ -14,11 +17,11 @@ class Wpisy extends Control
         $view->lokale = $modelLokale->index();
         $view->wpisy = $modelWpisy->index();
         $view->render('dach');
-        $view->render('user_register', DIR_TPL_FORM);
         $view->render('index', DIR_TPL_WPISY);
+        $view->render('front');
         $view->render('stopka');
     }
-    
+
     public function one()
     {
         $modelLokale = new \src\model\Lokale();
@@ -30,7 +33,19 @@ class Wpisy extends Control
         $view->render('one', DIR_TPL_WPISY);
         $view->render('stopka');
     }
-    
+
+    public function lokal()
+    {
+        $modelLokale = new \src\model\Lokale();
+        $modelWpisy = new \src\model\Wpisy();
+        $view = new \src\view\Wpisy();
+        $view->lokale = $modelLokale->index();
+        $view->wpisy = $modelWpisy->lokal($_GET['id']);
+        $view->render('dach');
+        $view->render('lokal', DIR_TPL_WPISY);
+        $view->render('stopka');
+    }
+
     public function add()
     {
         $modelWpisy = new \src\model\Wpisy();
@@ -46,7 +61,7 @@ class Wpisy extends Control
             $view->render('stopka');
         }
     }
-    
+
     public function del()
     {
         $modelWpisy = new \src\model\Wpisy();
