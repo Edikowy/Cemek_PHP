@@ -8,8 +8,8 @@
 " required><br>
 <input class="" id="" name="wpisy_add[autor]" type="text" value="" placeholder="Autor" required><br>
 <select name="wpisy_add[id_lokale]" size="0">
-<?php foreach($this->lokale as $lokal): ?>
-	<option value="<?= $lokal['id']; ?>"><?= $lokal['name']; ?></option>
+<?php foreach($this->linki as $link): ?>
+	<option value="<?= $link['id']; ?>"><?= $link['name']; ?></option>
 <?php endforeach; ?>
 </select><br>
 <input class="" id="" name="wpisy_add[submit]" type="submit" value="Dodaj" placeholder="" required>

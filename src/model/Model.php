@@ -10,7 +10,7 @@ use PDOException;
  * @author Edikowy
  *        
  */
-class Model {
+abstract class Model {
     public $conn; // Uchwyt połączenia z bazą danych
     public function __construct()
     {

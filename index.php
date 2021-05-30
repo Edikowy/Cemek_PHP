@@ -5,7 +5,7 @@ use src\Engine;
  * @author Edikowy
  *        
  */
-require 'src/conf.php';
+require 'src/config.php';
 // require 'src/auto.php';
 
 spl_autoload_extensions('.php');

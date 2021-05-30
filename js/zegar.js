@@ -2,7 +2,7 @@
  * 
  */
 
- function tikTak() {
+ function zegar() {
 	dzisiaj = new Date();
 
 	rok = dzisiaj.getFullYear();

@@ -6,7 +6,7 @@ namespace src\control;
  * @author Edikowy
  *        
  */
-class Control
+abstract class Control
 {
 
     public function doHedera($url)

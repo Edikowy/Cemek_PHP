@@ -25,20 +25,20 @@ class Engine
         if (! $_GET) {
             $control = new \src\control\Wpisy();
             return $control->index();
+        } elseif ($_GET['vidok'] == 'lokale') {
+            $control = new \src\control\Lokale();
+            $akcja = $_GET['akcja'];
+            return $control->$akcja();
+        } elseif ($_GET['vidok'] == 'user') {
+            $control = new \src\control\User();
+            $akcja = $_GET['akcja'];
+            return $control->$akcja();
+        } elseif ($_GET['vidok'] == 'wpisy') {
+            $control = new \src\control\Wpisy();
+            $akcja = $_GET['akcja'];
+            return $control->$akcja();
         } else {
-            if ($_GET['vidok'] == 'lokale') {
-                $control = new \src\control\Lokale();
-                $akcja = $_GET['akcja'];
-                return $control->$akcja();
-            } elseif ($_GET['vidok'] == 'user') {
-                $control = new \src\control\User();
-                $akcja = $_GET['akcja'];
-                return $control->$akcja();
-            } elseif ($_GET['vidok'] == 'wpisy') {
-                $control = new \src\control\Wpisy();
-                $akcja = $_GET['akcja'];
-                return $control->$akcja();
-            }
+            ;
         }
     }
 

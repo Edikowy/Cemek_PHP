@@ -14,7 +14,7 @@ class Lokale extends Model
         parent::__construct();
     }
 
-    public function index()
+    public function linki()
     {
         $sql = 'SELECT * from lokale';
         $query = $this->conn->query($sql);
@@ -26,20 +26,6 @@ class Lokale extends Model
         }
     }
 
-    // do wywalenia
-    public function one($id)
-    {
-        $sql = 'SELECT * FROM lokale where id=' . (int) $id;
-        $query = $this->conn->query($sql);
-        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
-        if (isset($result[0])) {
-            return $result[0];
-        } else {
-            return null;
-        }
-    }
-
-    // do wywalenia
     public function add($data)
     {
         $sql = 'INSERT INTO lokale (id, name, url) VALUES (NULL, :name, :url)';

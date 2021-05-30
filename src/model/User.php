@@ -146,10 +146,8 @@ class User extends Model
             $query->bindValue(':login', $login, \PDO::PARAM_STR);
             $query->bindValue(':email', $email, \PDO::PARAM_STR);
             $query->bindValue(':pass', $pass_hash, \PDO::PARAM_STR);
-
             $query->execute();
             // --------------------------------------------------------------------------------
-
             $_SESSION['user']['register_ok'] = TRUE;
             Control::doHedera('index.php'); // ?????????????????????????
         }
@@ -178,26 +176,65 @@ class User extends Model
         echo 'delUser';
 
         $pass = addslashes($pass);
+        
+        $this->czyJestTakiEmail($email);
     }
 
-    private function czyJestTaki()
+    private function czyJestTakiLogin($login)
     {
-        ;
+        $sql = "SELECT login FROM users WHERE login = '$login'";
+        $query = $this->conn->query($sql);
+        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
+        if (! empty($result)) {
+            $_SESSION['err_user']['new_login'] = "Istnieje taki nick!";
+            return $all_OK = FALSE;
+        } else {
+            return $login;
+        }
     }
 
-    private function zakres()
+    private function czyJestTakiEmail($email)
     {
-        ;
+        $sql = "SELECT email FROM users WHERE email = '$email'";
+        $query = $this->conn->query($sql);
+        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
+        if (! empty($result)) {
+            $_SESSION['err_user']['new_email'] = "Istnieje taki e-mail!";
+            return $all_OK = FALSE;
+        } else {
+            return $email;
+        }
     }
 
-    private function sanityza()
+    private function zakres($text, $od, $do)
     {
-        ;
+        if ((strlen($text) < $od) || (strlen($text) > $do)) {
+            $_SESSION['err_user']['new_login'] = "Nick - od 3 do 20 znaków!";
+            return $all_OK = FALSE;
+        } else {
+            return $text;
+        }
     }
 
-    private function alfanum()
+    private function sanityza($email)
     {
-        ;
+        $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if ((! filter_var($emailB, FILTER_VALIDATE_EMAIL)) || ($emailB != $email)) {
+            $_SESSION['err_user']['new_email'] = "Podaj poprawny e-mail!";
+            return $all_OK = FALSE;
+        } else {
+            return $email;
+        }
+    }
+
+    private function alfanum($text)
+    {
+        if (! ctype_alnum($text)) {
+            $_SESSION['err_user']['new_login'] = "Nick - znaki alfanumeryczne";
+            return $all_OK = FALSE;
+        } else {
+            return $text;
+        }
     }
 }
 

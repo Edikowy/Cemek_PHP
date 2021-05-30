@@ -9,7 +9,7 @@
 <?= $this->dodajPliki('./js/' ,'js' ,'script' ,DIR_TPL_ELEM); ?>
 <title><?= VIEW_LOGO ?></title>
 </head>
-<body onload="tikTak()">
+<body onload="zegar()">
 <div id="zero">
 <div id="jeden">
 <header id="dach">
@@ -22,19 +22,21 @@
 <div id="prawy">
 <?php 
 if ((isset($_SESSION['user']['loged'])) && ($_SESSION['user']['loged'] ==  TRUE)) {
-    echo 'User- ' . $_SESSION['user']['login'] . '<br>';
-    echo 'Email- ' . $_SESSION['user']['email'] . '<br>';
-    echo 'Id- ' . $_SESSION['user']['id'] . '<br>';
+    echo 'User ' . $_SESSION['user']['login'] . '<br>';
+    echo 'Email ' . $_SESSION['user']['email'] . '<br>';
+    echo 'Id ' . $_SESSION['user']['id'] . '<br>';
     $this->render('user_logout', DIR_TPL_FORM);
+    echo '<br><a href="?vidok=user&akcja=setings">Setings</a><br>';
 } else {
     $this->render('user_login', DIR_TPL_FORM);
+    echo '<br><a href="?vidok=user&akcja=setings">Rejestracja</a><br>';
 }
 ?>
 </div>
 
 <nav id="linki"><ul>
-<?php foreach($this->lokale as $lokal): ?>
-	<li><a href="?vidok=wpisy&akcja=lokal&id=<?= $lokal['id']; ?>" id="<?= $lokal['name']; ?>"><?= $lokal['name']; ?></a></li>
+<?php foreach($this->linki as $link): ?>
+	<li><a href="?vidok=wpisy&akcja=lokal&id=<?= $link['id']; ?>" id="<?= $link['name']; ?>"><?= $link['name']; ?></a></li>
 <?php endforeach; ?>
 </ul></nav>
 

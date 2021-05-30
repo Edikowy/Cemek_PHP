@@ -14,7 +14,7 @@ class Wpisy extends Control
         $modelLokale = new \src\model\Lokale();
         $modelWpisy = new \src\model\Wpisy();
         $view = new \src\view\Wpisy();
-        $view->lokale = $modelLokale->index();
+        $view->linki = $modelLokale->linki();
         $view->wpisy = $modelWpisy->index();
         $view->render('dach');
         $view->render('index', DIR_TPL_WPISY);
@@ -27,7 +27,7 @@ class Wpisy extends Control
         $modelLokale = new \src\model\Lokale();
         $modelWpisy = new \src\model\Wpisy();
         $view = new \src\view\Wpisy();
-        $view->lokale = $modelLokale->index();
+        $view->linki = $modelLokale->linki();
         $view->wpis = $modelWpisy->one($_GET['id']);
         $view->render('dach');
         $view->render('one', DIR_TPL_WPISY);
@@ -39,7 +39,7 @@ class Wpisy extends Control
         $modelLokale = new \src\model\Lokale();
         $modelWpisy = new \src\model\Wpisy();
         $view = new \src\view\Wpisy();
-        $view->lokale = $modelLokale->index();
+        $view->linki = $modelLokale->linki();
         $view->wpisy = $modelWpisy->lokal($_GET['id']);
         $view->render('dach');
         $view->render('lokal', DIR_TPL_WPISY);
@@ -55,7 +55,7 @@ class Wpisy extends Control
         } else {
             $modelLokale = new \src\model\Lokale();
             $view = new \src\view\Wpisy();
-            $view->lokale = $modelLokale->index();
+            $view->linki = $modelLokale->linki();
             $view->render('dach');
             $view->render('add', DIR_TPL_WPISY);
             $view->render('stopka');
@@ -70,8 +70,9 @@ class Wpisy extends Control
             $this->doHedera('index.php?vidok=wpisy&akcja=del');
         } else {
             $modelLokale = new \src\model\Lokale();
+            $modelWpisy = new \src\model\Wpisy();
             $view = new \src\view\Wpisy();
-            $view->lokale = $modelLokale->index();
+            $view->linki = $modelLokale->linki();
             $view->wpisy = $modelWpisy->index();
             $view->render('dach');
             $view->render('del', DIR_TPL_WPISY);

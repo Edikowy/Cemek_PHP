@@ -8,7 +8,7 @@ use DirectoryIterator;
  * @author Edikowy
  *        
  */
-class View
+abstract class View
 {
 
     public function render($template, $template_path = 'src/tpl/', $template_ext = '.php')
