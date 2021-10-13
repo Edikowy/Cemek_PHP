@@ -1,1 +1,1 @@
-<script src="<?= $dir . $file->getFilename() ?>"></script>
+<script src="<?= $dir . $tpl->getFilename() ?>"></script>

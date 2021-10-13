@@ -4,16 +4,18 @@ namespace src\model;
 /**
  *
  * @author Edikowy
- *        
+ * @copyright (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license MIT License
+ * @link https://github.com/Edikowy/Cemek_PHP
  */
 class Lokale extends Model
 {
-
+    
     public function __construct()
     {
         parent::__construct();
     }
-
+    
     public function linki()
     {
         $sql = 'SELECT * from lokale';
@@ -25,7 +27,7 @@ class Lokale extends Model
             return null;
         }
     }
-
+    
     public function add($data)
     {
         $sql = 'INSERT INTO lokale (id, name, url) VALUES (NULL, :name, :url)';
@@ -34,7 +36,7 @@ class Lokale extends Model
         $query->bindValue(':url', $data['url'], \PDO::PARAM_STR);
         $query->execute();
     }
-
+    
     public function del($id)
     {
         $sql = 'DELETE FROM lokale where id=:id';
@@ -43,3 +45,4 @@ class Lokale extends Model
         $query->execute();
     }
 }
+

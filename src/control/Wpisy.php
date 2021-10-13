@@ -4,79 +4,72 @@ namespace src\control;
 /**
  *
  * @author Edikowy
- *        
+ * @copyright (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license MIT License
+ * @link https://github.com/Edikowy/Cemek_PHP
  */
 class Wpisy extends Control
 {
-
     public function index()
     {
-        $modelLokale = new \src\model\Lokale();
-        $modelWpisy = new \src\model\Wpisy();
-        $view = new \src\view\Wpisy();
+        $this->loadFile(DIR_MODEL, 'Lokale');
+        $modelLokale = $this->loadClass(DIR_MODEL, 'Lokale');
+        $this->loadFile(DIR_MODEL, 'Wpisy');
+        $modelWpisy = $this->loadClass(DIR_MODEL, 'Wpisy');
+        $this->loadFile(DIR_VIEW, 'Wpisy');
+        $view = $this->loadClass(DIR_VIEW, 'Wpisy');
         $view->linki = $modelLokale->linki();
         $view->wpisy = $modelWpisy->index();
-        $view->render('dach');
-        $view->render('index', DIR_TPL_WPISY);
-        $view->render('front');
-        $view->render('stopka');
+        $view->loadFile(DIR_TPL_KLAS, 'wpisy_index');
     }
-
+    
     public function one()
     {
-        $modelLokale = new \src\model\Lokale();
-        $modelWpisy = new \src\model\Wpisy();
-        $view = new \src\view\Wpisy();
+        $this->loadFile(DIR_MODEL, 'Lokale');
+        $modelLokale = $this->loadClass(DIR_MODEL, 'Lokale');
+        $this->loadFile(DIR_MODEL, 'Wpisy');
+        $modelWpisy = $this->loadClass(DIR_MODEL, 'Wpisy');
+        $this->loadFile(DIR_VIEW, 'Wpisy');
+        $view = $this->loadClass(DIR_VIEW, 'Wpisy');
         $view->linki = $modelLokale->linki();
         $view->wpis = $modelWpisy->one($_GET['id']);
-        $view->render('dach');
-        $view->render('one', DIR_TPL_WPISY);
-        $view->render('stopka');
+        $view->loadFile(DIR_TPL_KLAS, 'wpisy_one');
     }
-
+    
     public function lokal()
     {
-        $modelLokale = new \src\model\Lokale();
-        $modelWpisy = new \src\model\Wpisy();
-        $view = new \src\view\Wpisy();
+        $this->loadFile(DIR_MODEL, 'Lokale');
+        $modelLokale = $this->loadClass(DIR_MODEL, 'Lokale');
+        $this->loadFile(DIR_MODEL, 'Wpisy');
+        $modelWpisy = $this->loadClass(DIR_MODEL, 'Wpisy');
+        $this->loadFile(DIR_VIEW, 'Wpisy');
+        $view = $this->loadClass(DIR_VIEW, 'Wpisy');
         $view->linki = $modelLokale->linki();
         $view->wpisy = $modelWpisy->lokal($_GET['id']);
-        $view->render('dach');
-        $view->render('lokal', DIR_TPL_WPISY);
-        $view->render('stopka');
+        $view->loadFile(DIR_TPL_KLAS, 'wpisy_lokal');
     }
-
+    
     public function add()
     {
-        $modelWpisy = new \src\model\Wpisy();
+        $this->loadFile(DIR_MODEL, 'Wpisy');
+        $modelWpisy = $this->loadClass(DIR_MODEL, 'Wpisy');
         if (isset($_POST['wpisy_add'])) {
             $modelWpisy->add($_POST['wpisy_add']);
-            $this->doHedera('index.php?vidok=wpisy&akcja=add');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         } else {
-            $modelLokale = new \src\model\Lokale();
-            $view = new \src\view\Wpisy();
-            $view->linki = $modelLokale->linki();
-            $view->render('dach');
-            $view->render('add', DIR_TPL_WPISY);
-            $view->render('stopka');
+            $this->doHedera('index.php');
         }
     }
-
+    
     public function del()
     {
-        $modelWpisy = new \src\model\Wpisy();
+        $this->loadFile(DIR_MODEL, 'Wpisy');
+        $modelWpisy = $this->loadClass(DIR_MODEL, 'Wpisy');
         if (isset($_POST['wpisy_del'])) {
             $modelWpisy->del($_POST['wpisy_del']['id']);
-            $this->doHedera('index.php?vidok=wpisy&akcja=del');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         } else {
-            $modelLokale = new \src\model\Lokale();
-            $modelWpisy = new \src\model\Wpisy();
-            $view = new \src\view\Wpisy();
-            $view->linki = $modelLokale->linki();
-            $view->wpisy = $modelWpisy->index();
-            $view->render('dach');
-            $view->render('del', DIR_TPL_WPISY);
-            $view->render('stopka');
+            $this->doHedera('index.php');
         }
     }
 }

@@ -8,7 +8,7 @@ namespace src\view;
  * @license MIT License
  * @link https://github.com/Edikowy/Cemek_PHP
  */
-class Wpisy extends View
+class Ero extends View
 {
 
     public function __construct()

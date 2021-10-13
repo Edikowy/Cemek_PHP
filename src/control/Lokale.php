@@ -4,49 +4,34 @@ namespace src\control;
 /**
  *
  * @author Edikowy
- *        
+ * @copyright (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license MIT License
+ * @link https://github.com/Edikowy/Cemek_PHP
  */
 class Lokale extends Control
 {
-
-
-    public function linki()
-    {
-        $modelLokale = new \src\model\Lokale();
-        $view = new \src\view\Lokale();
-        $view->linki = $modelLokale->linki();
-        $view->render('dach');
-        $view->render('index', DIR_TPL_LOKALE);
-        $view->render('stopka');
-    }
-
     public function add()
     {
-        $modelLokale = new \src\model\Lokale();
+        $this->loadFile(DIR_MODEL, 'Lokale');
+        $modelLokale = $this->loadClass(DIR_MODEL, 'Lokale');
         if (isset($_POST['lokale_add'])) {
             $modelLokale->add($_POST['lokale_add']);
-            $this->doHedera('index.php?vidok=lokale&akcja=add');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         } else {
-            $view = new \src\view\Lokale();
-            $view->linki = $modelLokale->linki();
-            $view->render('dach');
-            $view->render('add', DIR_TPL_LOKALE);
-            $view->render('stopka');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         }
     }
-
+    
     public function del()
     {
-        $modelLokale = new \src\model\Lokale();
+        $this->loadFile(DIR_MODEL, 'Lokale');
+        $modelLokale = $this->loadClass(DIR_MODEL, 'Lokale');
         if (isset($_POST['lokale_del'])) {
             $modelLokale->del($_POST['lokale_del']['id']);
-            $this->doHedera('index.php?vidok=lokale&akcja=del');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         } else {
-            $view = new \src\view\Lokale();
-            $view->linki = $modelLokale->linki();
-            $view->render('dach');
-            $view->render('del', DIR_TPL_LOKALE);
-            $view->render('stopka');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         }
     }
 }
+

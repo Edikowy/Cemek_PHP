@@ -1,95 +1,105 @@
 /**
- * 
+ *
+ * @author Edikowy
+ * @copyright (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license MIT License
+ * @link https://github.com/Edikowy/Cemek_PHP
  */
+function zegar() {
 
- function zegar() {
-	dzisiaj = new Date();
+    let dzisiaj = new Date();
+    let rok = dzisiaj.getFullYear();
+    let miesiac = dzisiaj.getMonth() + 1;
 
-	rok = dzisiaj.getFullYear();
+    switch (miesiac) {
+        case 1:
+            nazwa_miesiac = "Styczeń";
+            break;
+        case 2:
+            nazwa_miesiac = "Luty";
+            break;
+        case 3:
+            nazwa_miesiac = "Marzec";
+            break;
+        case 4:
+            nazwa_miesiac = "Kwiecien";
+            break;
+        case 5:
+            nazwa_miesiac = "Maj";
+            break;
+        case 6:
+            nazwa_miesiac = "Czerwiec";
+            break;
+        case 7:
+            nazwa_miesiac = "Lipiec";
+            break;
+        case 8:
+            nazwa_miesiac = "Sierpień";
+            break;
+        case 9:
+            nazwa_miesiac = "Wrzesień";
+            break;
+        case 10:
+            nazwa_miesiac = "Pażdziernik";
+            break;
+        case 11:
+            nazwa_miesiac = "Listopad";
+            break;
+        case 12:
+            nazwa_miesiac = "Grudzień";
+            break;
+    }
 
-	miesiac = dzisiaj.getMonth() + 1;
-	if (miesiac < 10)
-		miesiac = "0" + miesiac;
+    let dzien = dzisiaj.getDate();
+    let nazwa_dzien = dzisiaj.getDay();
 
-	if (miesiac == 1) {
-		nazwa_miesiac = "Styczeń";
-	}
-	if (miesiac == 2) {
-		nazwa_miesiac = "Luty";
-	}
-	if (miesiac == 3) {
-		nazwa_miesiac = "Marzec";
-	}
-	if (miesiac == 4) {
-		nazwa_miesiac = "Kwiecien";
-	}
-	if (miesiac == 5) {
-		nazwa_miesiac = "Maj";
-	}
-	if (miesiac == 6) {
-		nazwa_miesiac = "Czerwiec";
-	}
-	if (miesiac == 7) {
-		nazwa_miesiac = "Lipiec";
-	}
-	if (miesiac == 8) {
-		nazwa_miesiac = "Sierpień";
-	}
-	if (miesiac == 9) {
-		nazwa_miesiac = "Wrzesień";
-	}
-	if (miesiac == 10) {
-		nazwa_miesiac = "Pażdziernik";
-	}
-	if (miesiac == 11) {
-		nazwa_miesiac = "Listopad";
-	}
-	if (miesiac == 12) {
-		nazwa_miesiac = "Grudzień";
-	}
+    switch (nazwa_dzien) {
+        case 0:
+            nazwa_dzien = "Niedziela";
+            break;
+        case 1:
+            nazwa_dzien = "Poniedziałek";
+            break;
+        case 2:
+            nazwa_dzien = "Wtorek";
+            break;
+        case 3:
+            nazwa_dzien = "Środa";
+            break;
+        case 4:
+            nazwa_dzien = "Czwartek";
+            break;
+        case 5:
+            nazwa_dzien = "Piątek";
+            break;
+        case 6:
+            nazwa_dzien = "Sobota";
+            break;
+        default:
+            break;
+    }
 
-	dzien = dzisiaj.getDate();
-	if (dzien < 10)
-		dzien = "0" + dzien;
+    let godzina = dzisiaj.getHours();
+    if (godzina < 10) {
+        godzina = "0" + godzina;
+    }
 
-	nazwa_dzien = dzisiaj.getDay();
-	if (nazwa_dzien == 0) {
-		nazwa_dzien = "Niediela";
-	}
-	if (nazwa_dzien == 1) {
-		nazwa_dzien = "Poniedziałek";
-	}
-	if (nazwa_dzien == 2) {
-		nazwa_dzien = "Wtorek";
-	}
-	if (nazwa_dzien == 3) {
-		nazwa_dzien = "Środa";
-	}
-	if (nazwa_dzien == 4) {
-		nazwa_dzien = "Czwartek";
-	}
-	if (nazwa_dzien == 5) {
-		nazwa_dzien = "Piątek";
-	}
-	if (nazwa_dzien == 6) {
-		nazwa_dzien = "Sobota";
-	}
-	
-	godzina = dzisiaj.getHours();
-	if (godzina < 10)
-		godzina = "0" + godzina;
+    let minuta = dzisiaj.getMinutes();
+    if (minuta < 10) {
+        minuta = "0" + minuta;
+    }
 
-	minuta = dzisiaj.getMinutes();
-	if (minuta < 10)
-		minuta = "0" + minuta;
+    let sekunda = dzisiaj.getSeconds();
+    if (sekunda < 10) {
+        sekunda = "0" + sekunda;
+    }
 
-	sekunda = dzisiaj.getSeconds();
-	if (sekunda < 10)
-		sekunda = "0" + sekunda;
+    document.getElementById("data").innerHTML = rok + " . " + miesiac + " . " + dzien;
+    document.getElementById("czas").innerHTML = godzina + " : " + minuta + " : " + sekunda;
+    document.getElementById("nazwa_dzien").innerHTML = nazwa_dzien;
+    document.getElementById("nazwa_miesiac").innerHTML = nazwa_miesiac;
 
-	document.getElementById("data").innerHTML = rok + " - " + miesiac + " - " + dzien;
-	document.getElementById("czas").innerHTML = godzina + " : " + minuta + " : " + sekunda;
-	document.getElementById("nazwa_dzien").innerHTML = nazwa_dzien;
-	document.getElementById("nazwa_miesiac").innerHTML = nazwa_miesiac;
-	setTimeout("tikTak()", 500);
+    setTimeout("zegar()", 500);
+
 }
+

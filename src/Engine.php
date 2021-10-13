@@ -1,124 +1,111 @@
 <?php
 namespace src;
 
-use src\model\User;
-
 /**
  *
  * @author Edikowy
- *        
+ * @copyright (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license MIT License
+ * @link https://github.com/Edikowy/Cemek_PHP
  */
 class Engine
 {
 
-    public $date;
-
-    public function __construct()
+    protected $url;
+    
+    public function __construct(string $url)
     {
-        $this->date = gmdate("Y.m.d-H:i:s");
+        $url = explode('?', $url);
+        $this->url = $url[0];
     }
-
-    public function start()
-    {
-        $this->sesStart();
-        $this->uchoPost();
-        if (! $_GET) {
-            $control = new \src\control\Wpisy();
-            return $control->index();
-        } elseif ($_GET['vidok'] == 'lokale') {
-            $control = new \src\control\Lokale();
-            $akcja = $_GET['akcja'];
-            return $control->$akcja();
-        } elseif ($_GET['vidok'] == 'user') {
-            $control = new \src\control\User();
-            $akcja = $_GET['akcja'];
-            return $control->$akcja();
-        } elseif ($_GET['vidok'] == 'wpisy') {
-            $control = new \src\control\Wpisy();
-            $akcja = $_GET['akcja'];
-            return $control->$akcja();
-        } else {
-            ;
-        }
-    }
-
-    // -------------------------------------------------------------------
-    // do start()
-    public function uchoPost()
-    {
-        // if ($_POST) {
-        // $post = $_POST[$form];// ?????????????????????????????/ z posta nazwe formulaza
-        // $post = explode('_', $post);
-        // $klas = $post[0];
-        // $funk = $post[1];
-        // }
-        if ($_POST) {
-            $model = new User();
-            if (isset($_POST['user_login'])) {
-                $model->login($_POST['user_login']['login'], $_POST['user_login']['pass']);
-            }
-            if (isset($_POST['user_logout'])) {
-                $model->logout();
-                $this->sesStop();
-            }
-            if (isset($_POST['user_register'])) {
-                $model->register($_POST['user_register']['new_login'], $_POST['user_register']['new_email'], $_POST['user_register']['new_pass'], $_POST['user_register']['new_pass2']);
-            }
-            if (isset($_POST['user_newemail'])) {
-                $model->newemail($_POST['user_newemail']['new_email'], $_POST['user_newemail']['pass']);
-            }
-            if (isset($_POST['user_newpass'])) {
-                $model->newpass($_POST['user_newpass']['pass'], $_POST['user_newpass']['new_pass'], $_POST['user_newpass']['new_pass2']);
-            }
-            if (isset($_POST['user_deluser'])) {
-                $model->deluser();
-                $this->sesStop();
-            }
-            unset($_POST);
-            return $model;
-        }
-    }
-
-    // do start()
-    // -------------------------------------------------------------------
-
-    // -------------------------------------------------------------------
-    // Szajs!!!!!!!!!!
+    
     public function sesStart()
     {
-        if (isset($_SESSION)) {
-            $this->sesStop();
-        }
-        if (isset($_COOKIE[SES_NAME])) {
-            $this->sesKont();
-        } else {
+        if (isset($_COOKIE[session_name()])) {
+            $ck = session_get_cookie_params();
             session_set_cookie_params(SES_EXP);
-            session_name(SES_NAME);
-            session_start();
-            $_SESSION['ses']['name'] = session_name();
+            setcookie(session_name(), session_id($_COOKIE[session_name()]), false, $ck['path'], $ck['domain'], $ck['secure']);
+            @session_start();
+            $_SESSION['ses']['id'] = session_id();
+        } else {
+            session_id(md5(uniqid(rand(), true)));
+            $ck = session_get_cookie_params();
+            session_set_cookie_params(SES_EXP);
+            setcookie(session_name(), session_id(), false, $ck['path'], $ck['domain'], $ck['secure']);
+            @session_start();
             $_SESSION['ses']['id'] = session_id();
         }
     }
-
-    // Szajs!!!!!!!!!!
-    public function sesKont()
-    {
-        session_set_cookie_params(SES_EXP);
-        session_name(SES_NAME);
-        session_id($_COOKIE[SES_NAME]);
-        session_start();
-        $_SESSION['ses']['name'] = session_name();
-        $_SESSION['ses']['id'] = session_id();
-    }
-
-    // Szajs!!!!!!!!!!
+    
     public function sesStop()
     {
         session_write_close();
-        session_destroy();
-        $this->sesStart();
+        unset($_SESSION);
     }
-    // Szajs!!!!!!!!!!
-    // -------------------------------------------------------------------
+    
+    public function start()
+    {
+        $this->sesStart();
+        $this->req();
+        $this->res();
+        $this->sesStop();
+    }
+    
+    public function req()
+    {
+        if ($_POST) {
+            $posta = explode('_', array_key_first($_POST));
+            $_SESSION['req']['class'] = $posta[0];
+            $_SESSION['req']['function'] = $posta[1];
+        } elseif ($_GET) {
+            $geta = $_GET;
+            for ($i = 0; $i < count($geta); $i ++) {
+                $key = key($geta);
+                $val = $geta[$key];
+                if ($key == 'class') { $_SESSION['req']['class'] = $val; }
+                if ($key == 'function') { $_SESSION['req']['function'] = $val; }
+                next($geta);
+            }
+        } else {
+            $_SESSION['req']['class'] = 'Wpisy';
+            $_SESSION['req']['function'] = 'index';
+        }
+    }
+    
+    public function res()
+    {
+        if (isset($_SESSION['req']['class']) && isset($_SESSION['req']['function'])) {
+            $class = $_SESSION['req']['class'];
+            $function = $_SESSION['req']['function'];
+        } else {
+            $class = $_SESSION['req']['class'] = 'Ero';
+            $function = $_SESSION['req']['function'] = 'index';
+        }
+        $class = ucfirst($class);
+        $this->loadFile(DIR_CONTROL, $class, '.php');
+        $control = $this->loadClass(DIR_CONTROL, $class);
+        $control->$function();
+    }
+    
+    public function loadFile(string $path, string $file, string $exp = '.php')
+    {
+        $filepath = $path . $file . $exp;
+        if (is_file($filepath)) {
+            return require $filepath;
+        } else {
+            return NULL;
+        }
+    }
+    
+    public function loadClass(string $path, string $class)
+    {
+        $classpath = str_replace("/", "\\", $path) . $class;
+        return new $classpath();
+    }
+    
+    public function doHedera(string $url)
+    {
+        header("location: " . $url);
+    }
 }
 

@@ -1,16 +1,16 @@
 <?php
 namespace src\model;
 
-use src\control\Control;
+use src\Engine;
 
 /**
- *
- * @author Edikowy
- *        
+ * @author           Edikowy
+ * @copyright        (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license          MIT License
+ * @link             https://github.com/Edikowy/Cemek_PHP
  */
 class User extends Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -21,17 +21,17 @@ class User extends Model
             $sql = "SELECT * FROM users WHERE login = '$login'";
             $query = $this->conn->query($sql);
             $result = $query->fetch(\PDO::FETCH_ASSOC);
-            if (isset($result) && (password_verify($pass, $result["pass"]))) {
-                $_SESSION['user']['id'] = $result["id"];
-                $_SESSION['user']['login'] = $result["login"];
-                $_SESSION['user']['pass'] = $result["pass"];
-                $_SESSION['user']['email'] = $result["email"];
+            if (isset($result) && (password_verify($pass, $result['pass']))) {
+                $_SESSION['user']['id'] = $result['id'];
+                $_SESSION['user']['login'] = $result['login'];
+                $_SESSION['user']['pass'] = $result['pass'];
+                $_SESSION['user']['email'] = $result['email'];
                 $_SESSION['user']['loged'] = TRUE;
             }
         }
     }
-
-    public function login($login, $pass)
+    
+    public function login(string $login, string $pass)
     {
         $login = addslashes($login);
         $pass = addslashes($pass);
@@ -39,34 +39,34 @@ class User extends Model
         $sql = "SELECT * FROM users WHERE login = '$login'";
         $query = $this->conn->query($sql);
         $result = $query->fetch(\PDO::FETCH_ASSOC);
-        if (isset($result)) {
-            if (password_verify($pass, $result["pass"])) {
-                $_SESSION['user']['id'] = $result["id"];
-                $_SESSION['user']['login'] = $result["login"];
-                $_SESSION['user']['pass'] = $result["pass"];
-                $_SESSION['user']['email'] = $result["email"];
+        if (! empty($result)) {
+            if (password_verify($pass, $result['pass'])) {
+                $_SESSION['user']['id'] = $result['id'];
+                $_SESSION['user']['login'] = $result['login'];
+                $_SESSION['user']['pass'] = $result['pass'];
+                $_SESSION['user']['email'] = $result['email'];
                 $_SESSION['user']['loged'] = TRUE;
-                Control::doHedera('index.php'); // ?????????????????????????
                 return TRUE;
             } else {
                 $_SESSION['err_user']['pass'] = 'Złe haslo';
+                echo 'Złe haslo';
                 return NULL;
             }
         } else {
             $_SESSION['err_user']['login'] = 'Zły login';
-            return NULL;
+            echo 'Zły login';
         }
     }
-
+    
     public function logout()
     {
         if ($_SESSION['user']['loged'] == TRUE) {
             unset($_SESSION['user']);
-            Control::doHedera('index.php'); // ?????????????????????????
+            Engine::doHedera('index.php'); // ?????????????????????????
         }
     }
-
-    public function register($new_login, $new_email, $new_pass, $new_pass2)
+    
+    public function register(string $new_login, string $new_email, string $new_pass, string $new_pass2)
     {
         $login = addslashes($new_login);
         $email = addslashes($new_email);
@@ -77,14 +77,14 @@ class User extends Model
         // zakres()
         if ((strlen($login) < 3) || (strlen($login) > 20)) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_login'] = "Nick - od 3 do 20 znaków!";
+            $_SESSION['err_user']['new_login'] = 'Nick - od 3 do 20 znaków!';
         }
         // zakres()
         // --------------------------------------------------------------------------------
         // alfanum()
         if (! ctype_alnum($login)) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_login'] = "Nick - znaki alfanumeryczne";
+            $_SESSION['err_user']['new_login'] = 'Nick - znaki alfanumeryczne';
         }
         // alfanum()
         // --------------------------------------------------------------------------------
@@ -92,21 +92,21 @@ class User extends Model
         $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
         if ((! filter_var($emailB, FILTER_VALIDATE_EMAIL)) || ($emailB != $email)) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_email'] = "Podaj poprawny e-mail!";
+            $_SESSION['err_user']['new_email'] = 'Podaj poprawny e-mail!';
         }
         // sanityza()
         // --------------------------------------------------------------------------------
         // zakres()
         if ((strlen($pass) < 6) || (strlen($pass2) > 20)) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_pass'] = "Hasło od 6 do 20 znaków.";
+            $_SESSION['err_user']['new_pass'] = 'Hasło od 6 do 20 znaków.';
         }
         // zakres()
         // --------------------------------------------------------------------------------
         // to opcja
         if ($pass != $pass2) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_pass2'] = "Hasła nie identyczne.";
+            $_SESSION['err_user']['new_pass2'] = 'Hasła nie identyczne.';
         }
         // to opcja
         $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
@@ -117,7 +117,7 @@ class User extends Model
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);
         if (! empty($result)) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_email'] = "Istnieje taki e-mail!";
+            $_SESSION['err_user']['new_email'] = 'Istnieje taki e-mail!';
         }
         // czyJestTaki()
         // --------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ class User extends Model
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);
         if (! empty($result)) {
             $all_OK = FALSE;
-            $_SESSION['err_user']['new_login'] = "Istnieje taki nick!";
+            $_SESSION['err_user']['new_login'] = 'Istnieje taki nick!';
         }
         // czyJestTaki()
         // --------------------------------------------------------------------------------
@@ -135,12 +135,6 @@ class User extends Model
             // $remote = $_SERVER['REMOTE_ADDR'];
             // $agent = $_SERVER['HTTP_USER_AGENT'];
             // $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email', '1', NULL, TRUE, '$remote', '$agent')";
-
-            // --------------------------------------------------------------------------------
-            // $sql = "INSERT INTO users VALUES (NULL, '$login', '$pass_hash', '$email')";
-            // $query = $this->conn->prepare($sql);
-            // $query->execute();
-
             $sql = 'INSERT INTO users (id, login, email, pass) VALUES (NULL, :login, :email, :pass)';
             $query = $this->conn->prepare($sql);
             $query->bindValue(':login', $login, \PDO::PARAM_STR);
@@ -149,92 +143,27 @@ class User extends Model
             $query->execute();
             // --------------------------------------------------------------------------------
             $_SESSION['user']['register_ok'] = TRUE;
-            Control::doHedera('index.php'); // ?????????????????????????
+            Engine::doHedera('index.php'); // ?????????????????????????
         }
         // --------------------------------------------------------------------------------
     }
-
-    public function newemail($new_email, $pass)
+    
+    public function newemail(string $new_email, string $pass)
     {
-        echo 'newEmail';
-
         $new_email = addslashes($new_email);
         $pass = addslashes($pass);
     }
-
-    public function newpass($pass, $new_pass, $new_pass2)
+    
+    public function newpass(string $pass, string $new_pass, string $new_pass2)
     {
-        echo 'newPass';
-
         $pass = addslashes($pass);
         $new_pass = addslashes($new_pass);
         $new_pass2 = addslashes($new_pass2);
     }
-
-    public function deluser($pass)
+    
+    public function deluser(string $pass)
     {
-        echo 'delUser';
-
         $pass = addslashes($pass);
-        
-        $this->czyJestTakiEmail($email);
-    }
-
-    private function czyJestTakiLogin($login)
-    {
-        $sql = "SELECT login FROM users WHERE login = '$login'";
-        $query = $this->conn->query($sql);
-        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
-        if (! empty($result)) {
-            $_SESSION['err_user']['new_login'] = "Istnieje taki nick!";
-            return $all_OK = FALSE;
-        } else {
-            return $login;
-        }
-    }
-
-    private function czyJestTakiEmail($email)
-    {
-        $sql = "SELECT email FROM users WHERE email = '$email'";
-        $query = $this->conn->query($sql);
-        $result = $query->fetchAll(\PDO::FETCH_ASSOC);
-        if (! empty($result)) {
-            $_SESSION['err_user']['new_email'] = "Istnieje taki e-mail!";
-            return $all_OK = FALSE;
-        } else {
-            return $email;
-        }
-    }
-
-    private function zakres($text, $od, $do)
-    {
-        if ((strlen($text) < $od) || (strlen($text) > $do)) {
-            $_SESSION['err_user']['new_login'] = "Nick - od 3 do 20 znaków!";
-            return $all_OK = FALSE;
-        } else {
-            return $text;
-        }
-    }
-
-    private function sanityza($email)
-    {
-        $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
-        if ((! filter_var($emailB, FILTER_VALIDATE_EMAIL)) || ($emailB != $email)) {
-            $_SESSION['err_user']['new_email'] = "Podaj poprawny e-mail!";
-            return $all_OK = FALSE;
-        } else {
-            return $email;
-        }
-    }
-
-    private function alfanum($text)
-    {
-        if (! ctype_alnum($text)) {
-            $_SESSION['err_user']['new_login'] = "Nick - znaki alfanumeryczne";
-            return $all_OK = FALSE;
-        } else {
-            return $text;
-        }
     }
 }
 

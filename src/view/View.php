@@ -6,44 +6,53 @@ use DirectoryIterator;
 /**
  *
  * @author Edikowy
- *        
+ * @copyright (c) 2015-2021, Edikowy. All Rights Reserved.
+ * @license MIT License
+ * @link https://github.com/Edikowy/Cemek_PHP
  */
-abstract class View
+class View
 {
-
-    public function render($template, $template_path = 'src/tpl/', $template_ext = '.php')
+    public function loadFile(string $path, string $file, string $exp = '.php')
     {
-        $path = $template_path . $template . $template_ext;
-        if (is_file($path)) {
-            return require $path;
+        $filepath = $path . $file . $exp;
+        if (is_file($filepath)) {
+            return require $filepath;
+        } else {
+            return NULL;
         }
     }
-
-    public function dodajPliki($dir, $ext, $template, $template_path = 'src/tpl/', $template_ext = '.php')
+    
+    public function loadClass(string $path, string $class)
     {
-        foreach (new DirectoryIterator($dir) as $file) {
-            if ((! $file->isDot()) & ($file->isFile()) & ($file->getExtension() == $ext)) {
-                $path = $template_path . $template . $template_ext;
-                require $path;
+        $classpath = str_replace("/", "\\", $path) . $class;
+        return new $classpath();
+    }
+    
+    public function loadDir(string $dir, string $dir_ext, string $path, string $file, string $ext = '.php')
+    {
+        foreach (new DirectoryIterator($dir) as $tpl) {
+            if ((! $tpl->isDot()) & ($tpl->isFile()) & ($tpl->getExtension() == $dir_ext)) {
+                $filepath = $path . $file . $ext;
+                require $filepath;
             }
         }
     }
-
+    
     public function get($name)
     {
         return $this->$name;
     }
-
+    
     public function __get($name)
     {
         return $this->$name;
     }
-
+    
     public function set($name, $value)
     {
         $this->$name = $value;
     }
-
+    
     public function __set($name, $value)
     {
         $this->$name = $value;

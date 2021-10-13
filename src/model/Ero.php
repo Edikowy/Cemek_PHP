@@ -1,5 +1,5 @@
 <?php
-namespace src\view;
+namespace src\model;
 
 /**
  *
@@ -8,10 +8,12 @@ namespace src\view;
  * @license MIT License
  * @link https://github.com/Edikowy/Cemek_PHP
  */
-class Wpisy extends View
+class Ero extends Model
 {
-
+    
     public function __construct()
-    {}
+    {
+        parent::__construct();
+    }
 }
 

@@ -2,7 +2,7 @@
 <input class="" id="" name="wpisy_add[name]" type="text" value="" placeholder="Name" required><br>
 <input class="" id="" name="wpisy_add[url]" type="text" value="" placeholder="Url" required><br>
 <input class="" id="" name="wpisy_add[title]" type="text" value="" placeholder="Tytuł" required><br>
-<textarea class="" id="" name="wpisy_add[content]" placeholder="Zawartosc" required></textarea><br>
+<textarea class="" id="" name="wpisy_add[content]" placeholder="Zawartosć" required></textarea><br>
 <input class="" id="" name="wpisy_add[date_add]" type="hidden" value="
 <?= gmdate("Y.m.d-H:i:s"); ?>
 " required><br>
