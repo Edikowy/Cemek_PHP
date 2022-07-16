@@ -4,10 +4,11 @@ namespace src\model;
 use src\Engine;
 
 /**
- * @author           Edikowy
- * @copyright        (c) 2015-2021, Edikowy. All Rights Reserved.
- * @license          MIT License
- * @link             https://github.com/Edikowy/Cemek_PHP
+ *
+ * @author    Edikowy
+ * @copyright 2021 Edikowy. All Rights Reserved.
+ * @license   MIT License
+ * @link      https://github.com/Edikowy/Cemek_PHP
  */
 class User extends Model
 {

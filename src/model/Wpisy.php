@@ -3,8 +3,6 @@ namespace src\model;
 
 /**
  *
- * @category  Kategoria
- * @package   Pakiet
  * @author    Edikowy
  * @copyright 2021 Edikowy. All Rights Reserved.
  * @license   MIT License
