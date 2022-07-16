@@ -57,7 +57,7 @@ class Wpisy extends Control
             $modelWpisy->add($_POST['wpisy_add']);
             $this->doHedera("{$_SERVER['PHP_SELF']}");
         } else {
-            $this->doHedera('index.php');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         }
     }
     
@@ -69,7 +69,7 @@ class Wpisy extends Control
             $modelWpisy->del($_POST['wpisy_del']['id']);
             $this->doHedera("{$_SERVER['PHP_SELF']}");
         } else {
-            $this->doHedera('index.php');
+            $this->doHedera("{$_SERVER['PHP_SELF']}");
         }
     }
 }
