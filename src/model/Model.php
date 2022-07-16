@@ -14,9 +14,11 @@ use PDOException;
 class Model
 {
 
+    /**
+     * @var object Uchwyt połączenia z bazą danych
+     */
     public $conn;
-
-    // Uchwyt połączenia z bazą danych
+    
     public function __construct()
     {
         try {

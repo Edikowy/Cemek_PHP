@@ -27,7 +27,7 @@ class User extends Model
                 $_SESSION['user']['login'] = $result['login'];
                 $_SESSION['user']['pass'] = $result['pass'];
                 $_SESSION['user']['email'] = $result['email'];
-                $_SESSION['user']['loged'] = TRUE;
+                $_SESSION['user']['loged'] = true;
             }
         }
     }
@@ -46,12 +46,12 @@ class User extends Model
                 $_SESSION['user']['login'] = $result['login'];
                 $_SESSION['user']['pass'] = $result['pass'];
                 $_SESSION['user']['email'] = $result['email'];
-                $_SESSION['user']['loged'] = TRUE;
-                return TRUE;
+                $_SESSION['user']['loged'] = true;
+                return true;
             } else {
                 $_SESSION['err_user']['pass'] = 'Złe haslo';
                 echo 'Złe haslo';
-                return NULL;
+                return null;
             }
         } else {
             $_SESSION['err_user']['login'] = 'Zły login';
@@ -61,7 +61,7 @@ class User extends Model
     
     public function logout()
     {
-        if ($_SESSION['user']['loged'] == TRUE) {
+        if ($_SESSION['user']['loged']) {
             unset($_SESSION['user']);
             Engine::doHedera('index.php'); // ?????????????????????????
         }
@@ -73,18 +73,18 @@ class User extends Model
         $email = addslashes($new_email);
         $pass = addslashes($new_pass);
         $pass2 = addslashes($new_pass2);
-        $all_OK = TRUE;
+        $all_OK = true;
         // --------------------------------------------------------------------------------
         // zakres()
         if ((strlen($login) < 3) || (strlen($login) > 20)) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_login'] = 'Nick - od 3 do 20 znaków!';
         }
         // zakres()
         // --------------------------------------------------------------------------------
         // alfanum()
         if (! ctype_alnum($login)) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_login'] = 'Nick - znaki alfanumeryczne';
         }
         // alfanum()
@@ -92,21 +92,21 @@ class User extends Model
         // sanityza()
         $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
         if ((! filter_var($emailB, FILTER_VALIDATE_EMAIL)) || ($emailB != $email)) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_email'] = 'Podaj poprawny e-mail!';
         }
         // sanityza()
         // --------------------------------------------------------------------------------
         // zakres()
         if ((strlen($pass) < 6) || (strlen($pass2) > 20)) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_pass'] = 'Hasło od 6 do 20 znaków.';
         }
         // zakres()
         // --------------------------------------------------------------------------------
         // to opcja
         if ($pass != $pass2) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_pass2'] = 'Hasła nie identyczne.';
         }
         // to opcja
@@ -117,7 +117,7 @@ class User extends Model
         $query = $this->conn->query($sql);
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);
         if (! empty($result)) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_email'] = 'Istnieje taki e-mail!';
         }
         // czyJestTaki()
@@ -127,7 +127,7 @@ class User extends Model
         $query = $this->conn->query($sql);
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);
         if (! empty($result)) {
-            $all_OK = FALSE;
+            $all_OK = false;
             $_SESSION['err_user']['new_login'] = 'Istnieje taki nick!';
         }
         // czyJestTaki()
@@ -143,7 +143,7 @@ class User extends Model
             $query->bindValue(':pass', $pass_hash, \PDO::PARAM_STR);
             $query->execute();
             // --------------------------------------------------------------------------------
-            $_SESSION['user']['register_ok'] = TRUE;
+            $_SESSION['user']['register_ok'] = true;
             Engine::doHedera('index.php'); // ?????????????????????????
         }
         // --------------------------------------------------------------------------------
