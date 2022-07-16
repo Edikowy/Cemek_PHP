@@ -92,7 +92,7 @@ class Engine
     {
         $filepath = $path . $file . $exp;
         if (is_file($filepath)) {
-            return require $filepath;
+            include $filepath;
         } else {
             return NULL;
         }
