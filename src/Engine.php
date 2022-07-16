@@ -11,12 +11,10 @@ namespace src;
 class Engine
 {
 
-    protected $url;
-    
-    public function __construct(string $url)
+    protected $uri;
+    public function __construct(string $uri)
     {
-        $url = explode('?', $url);
-        $this->url = $url[0];
+        $this->uri = $uri;
     }
     
     public function sesStart()
