@@ -47,39 +47,40 @@ class Engine
     {
         $this->sesStart();
         $this->req();
-        $this->res();
         $this->sesStop();
     }
     
     public function req()
     {
+        $_SESSION['req']['uri'] = $this->uri;
         if ($_POST) {
+            $_SESSION['req']['posta'] = $_POST;
             $posta = explode('_', array_key_first($_POST));
-            $_SESSION['req']['class'] = $posta[0];
-            $_SESSION['req']['function'] = $posta[1];
+            $class = $posta[0];
+            $function = $posta[1];
         } elseif ($_GET) {
+            $_SESSION['req']['geta'] = $_GET;
             $geta = $_GET;
             for ($i = 0; $i < count($geta); $i ++) {
                 $key = key($geta);
                 $val = $geta[$key];
-                if ($key == 'class') { $_SESSION['req']['class'] = $val; }
-                if ($key == 'function') { $_SESSION['req']['function'] = $val; }
+                if ($key == 'class') {
+                    $class = $val;
+                }
+                if ($key == 'function') {
+                    $function = $val;
+                }
                 next($geta);
             }
         } else {
-            $_SESSION['req']['class'] = 'Wpisy';
-            $_SESSION['req']['function'] = 'index';
+            $_SESSION['req']['index'] = 1;
+            $class = 'Wpisy';
+            $function = 'index';
         }
-    }
-    
-    public function res()
-    {
-        if (isset($_SESSION['req']['class']) && isset($_SESSION['req']['function'])) {
-            $class = $_SESSION['req']['class'];
-            $function = $_SESSION['req']['function'];
-        } else {
-            $class = $_SESSION['req']['class'] = 'Ero';
-            $function = $_SESSION['req']['function'] = 'index';
+        if (! isset($class) & ! isset($function)) {
+            $_SESSION['req']['ero'] = 'index';
+            $class = 'Ero';
+            $function = 'index';
         }
         $class = ucfirst($class);
         $this->loadFile(DIR_CONTROL, $class, '.php');
