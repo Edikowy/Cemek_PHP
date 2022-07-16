@@ -25,6 +25,7 @@ class Engine
             setcookie(session_name(), session_id($_COOKIE[session_name()]), false, $ck['path'], $ck['domain'], $ck['secure']);
             @session_start();
             $_SESSION['ses']['id'] = session_id();
+            return true;
         } else {
             session_id(md5(uniqid(rand(), true)));
             $ck = session_get_cookie_params();
@@ -32,6 +33,7 @@ class Engine
             setcookie(session_name(), session_id(), false, $ck['path'], $ck['domain'], $ck['secure']);
             @session_start();
             $_SESSION['ses']['id'] = session_id();
+            return false;
         }
     }
     
