@@ -30,10 +30,9 @@ class Lokale extends Model
     
     public function add($data)
     {
-        $sql = 'INSERT INTO lokale (id, name, url) VALUES (NULL, :name, :url)';
+        $sql = 'INSERT INTO lokale (id, name) VALUES (NULL, :name)';
         $query = $this->conn->prepare($sql);
         $query->bindValue(':name', $data['name'], \PDO::PARAM_STR);
-        $query->bindValue(':url', $data['url'], \PDO::PARAM_STR);
         $query->execute();
     }
     
