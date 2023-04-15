@@ -94,7 +94,7 @@ class Engine
         if (is_file($filepath)) {
             include $filepath;
         } else {
-            return NULL;
+            return null;
         }
     }
     
